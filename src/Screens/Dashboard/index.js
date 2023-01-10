@@ -3,13 +3,20 @@ import { View, Text, SafeAreaView, FlatList, TouchableOpacity, Platform } from '
 import { height, totalSize } from 'react-native-dimension';
 import SelectDropdown from 'react-native-select-dropdown';
 import { useDispatch } from 'react-redux';
-import colors from '../../Constants/Colors';
-import types from '../../Redux/types';
-import DashboardStyles from './styles';
-import ToyotaLogo from '../../assets/toyota.svg';
-import HondaLogo from '../../assets/honda.svg';
-import AddCarSheet from '../../Constants/Sheets/AddCarSheet/AddCarSheet';
 import { useNavigation } from '@react-navigation/native';
+import DashboardStyles from './styles';
+import AddCarSheet from '../../Constants/Sheets/AddCarSheet/AddCarSheet';
+import types from '../../Redux/types';
+import colors from '../../Constants/Colors';
+import ArrowBack from '../../assets/ArrowBack.svg';
+import BMWLogo from '../../assets/bmw.svg';
+import FerrariLogo from '../../assets/ferrari.svg';
+import HondaLogo from '../../assets/honda.svg';
+import HyundaiLogo from '../../assets/hyundai.svg';
+import KiaLogo from '../../assets/kia.svg';
+import MercedesLogo from '../../assets/mercedes.svg';
+import SuzukiLogo from '../../assets/suzuki.svg';
+import ToyotaLogo from '../../assets/toyota.svg';
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -153,11 +160,17 @@ const Dashboard = () => {
 
           <View style={[DashboardStyles.Header]}>
             <>
-              <TouchableOpacity
-                onPress={() => Signout()}
-                style={{ width: '90%', alignSelf: 'center', alignItems: 'flex-end', marginTop: height(2) }}>
-                <Text style={{ fontSize: totalSize(1.5), color: colors.white, textDecorationLine: 'underline', fontWeight: '700' }}>Sign out</Text>
+            <View style={{flexDirection:'row',justifyContent: 'space-between',  marginHorizontal: height(2)}}>
+            <TouchableOpacity
+                onPress={() => navigation.goBack()}>
+                <ArrowBack/>
               </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => Signout()}>
+                <Text style={{ fontSize: totalSize(1.8), color: colors.white, textDecorationLine: 'underline', fontWeight: '700' }}>Sign out</Text>
+              </TouchableOpacity>
+            </View>
+              
               <View style={{ flexDirection: 'row', width: '90%', alignSelf: 'center', marginTop: height(3.5) }}>
                 {/* <Text style={{ color: colors.white, fontSize: totalSize(2), fontWeight: 'bold', }}>{'Category'} </Text> */}
                 {renderDropDown()}
