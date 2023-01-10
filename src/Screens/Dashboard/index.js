@@ -160,7 +160,7 @@ const Dashboard = () => {
 
           <View style={[DashboardStyles.Header]}>
             <>
-            <View style={{flexDirection:'row',justifyContent: 'space-between',  marginHorizontal: height(2)}}>
+            <View style={{flexDirection:'row',justifyContent: 'space-between',  marginHorizontal: height(2),marginTop:height(3)}}>
             <TouchableOpacity
                 onPress={() => navigation.goBack()}>
                 <ArrowBack/>
