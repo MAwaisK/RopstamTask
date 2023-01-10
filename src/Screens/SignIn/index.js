@@ -24,6 +24,8 @@ import colors from '../../Constants/Colors';
 import types from '../../Redux/types';
 
 const SignIn = () => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
   const [avaiableHeight, setavaiableHeight] = useState(
     Dimensions.get('screen').height,
   );
@@ -35,8 +37,7 @@ const SignIn = () => {
   const [validationPassword, setValidationPassword] = useState('');
 
   const [keyboardStatus] = KeyBoardStatus();
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
+
 
   const [loading, setLoading] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);

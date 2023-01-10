@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import { totalSize, width, height } from 'react-native-dimension';
 import colors from '../../Constants/Colors'
 
-const DashboardStyles = StyleSheet.create({
+const MainDashboardStyles = StyleSheet.create({
     SafeArea: {
         flex: 0,
         backgroundColor: colors.darkBlue,
@@ -64,4 +64,4 @@ const DashboardStyles = StyleSheet.create({
 
 });
 
-export default DashboardStyles;
+export default MainDashboardStyles;
