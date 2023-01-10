@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 import colors from '../../Constants/Colors';
 import types from '../../Redux/types';
-import DashboardStyles from './styles';
+import CarDetailsStyles from './styles';
 import ToyotaLogo from '../../assets/toyota.svg';
 import HondaLogo from '../../assets/honda.svg';
 import AddCarSheet from '../../Constants/Sheets/AddCarSheet/AddCarSheet';
@@ -65,97 +65,82 @@ const CarDetails = () => {
   ];
 
 
-
-
-
-
-
-
-  const Signout = () => {
-    dispatch({
-      type: types.LOGIN_KEY,
-      loginKey: '',
-    });
-
-  }
-
   return (
     <>
-      <SafeAreaView style={DashboardStyles.SafeArea} />
+      <SafeAreaView style={CarDetailsStyles.SafeArea} />
       <SafeAreaView style={{ flex: 1, backgroundColor: colors.white }}>
-        <View style={[DashboardStyles.Container]}>
+        <View style={[CarDetailsStyles.Container]}>
 
-          <View style={[DashboardStyles.Header]}>
+          <View style={[CarDetailsStyles.Header]}>
             <>
               <TouchableOpacity
                 onPress={() => navigation.goBack()}
-                style={{ width: '90%', alignSelf: 'center', alignItems: 'flex-start', marginTop: height(2) }}>
+                style={CarDetailsStyles.ArrowBackContainer}>
                 <ArrowBack />
               </TouchableOpacity>
-              <View style={{ justifyContent: 'center', alignItems: 'center', marginTop: height(0) }}>
-                <Text style={{ color: colors.white, fontSize: totalSize(2.7), fontWeight: 'bold' }}>{`${selectedCategory}`}Toyota </Text>
+              <View style={CarDetailsStyles.HeaderContentContainer}>
+                <Text style={CarDetailsStyles.HeaderContentText}>{`${selectedCategory}`}Toyota </Text>
               </View>
             </>
           </View>
-
-
-          <View style={{
-            flex: 1,
-            marginTop: -height(11)
-          }}>
+          <View style={CarDetailsStyles.Body}>
             <View
-              style={[DashboardStyles.CardContainer, Platform.OS === 'ios' ? DashboardStyles.Card : DashboardStyles.Card2]}>
-              <View style={{ width: '100%', justifyContent: 'center', alignItems: 'center', marginVertical: height(2) }}>
-                <ToyotaLogo width={height(12)} height={height(12)} />
+              style={[CarDetailsStyles.CardContainer, Platform.OS === 'ios' ? CarDetailsStyles.Card : CarDetailsStyles.Card2]}>
+              <View style={CarDetailsStyles.LogoConatiner}>
+                <ToyotaLogo width={height(17)} height={height(17)} />
               </View>
-                <ScrollView showsVerticalScrollIndicator={false}>
-                  <View style={{ flexDirection: 'row', marginHorizontal: height(2), marginTop: height(3) }}>
-                    <View style={{ width: '40%', justifyContent: 'flex-start' }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.grey, fontWeight: 'bold', }]}>Reg No:</Text>
+                <ScrollView 
+                style={CarDetailsStyles.ScrollViewContainer} 
+                showsVerticalScrollIndicator={false}>
+                  <View style={CarDetailsStyles.ContentContainer}>
+                  <View style={CarDetailsStyles.RowContainer}>
+                    <View style={CarDetailsStyles.LabelView}>
+                      <Text style={[CarDetailsStyles.LabelText]}>Reg No:</Text>
                     </View>
-                    <View style={{ width: '60%', justifyContent: 'center', alignItems: 'flex-start', }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.black, fontWeight: 'bold' }]}>Awais</Text>
-                    </View>
-                  </View>
-                  <View style={{ flexDirection: 'row', marginHorizontal: height(2), marginTop: height(3) }}>
-                    <View style={{ width: '40%', justifyContent: 'flex-start' }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.grey, fontWeight: 'bold', }]}>Modal Name: </Text>
-                    </View>
-                    <View style={{ width: '60%', justifyContent: 'center', alignItems: 'flex-start', }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.black, fontWeight: 'bold' }]}>Awais</Text>
+                    <View style={CarDetailsStyles.ValueView}>
+                      <Text style={[CarDetailsStyles.ValueText]}>Awais</Text>
                     </View>
                   </View>
-                  <View style={{ flexDirection: 'row', marginHorizontal: height(2), marginTop: height(3) }}>
-                    <View style={{ width: '40%', justifyContent: 'flex-start' }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.grey, fontWeight: 'bold', }]}>Car Name: </Text>
+                  <View style={CarDetailsStyles.RowContainer}>
+                    <View style={CarDetailsStyles.LabelView}>
+                      <Text style={[CarDetailsStyles.LabelText]}>Modal Name:</Text>
                     </View>
-                    <View style={{ width: '60%', justifyContent: 'center', alignItems: 'flex-start', }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.black, fontWeight: 'bold' }]}>Awais</Text>
-                    </View>
-                  </View>
-                  <View style={{ flexDirection: 'row', marginHorizontal: height(2), marginTop: height(3) }}>
-                    <View style={{ width: '40%', justifyContent: 'flex-start' }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.grey, fontWeight: 'bold', }]}>Reg Date: </Text>
-                    </View>
-                    <View style={{ width: '60%', justifyContent: 'center', alignItems: 'flex-start', }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.black, fontWeight: 'bold' }]}>Awais </Text>
+                    <View style={CarDetailsStyles.ValueView}>
+                      <Text style={[CarDetailsStyles.ValueText]}>Awais</Text>
                     </View>
                   </View>
-                  <View style={{ flexDirection: 'row', marginHorizontal: height(2), marginTop: height(3) }}>
-                    <View style={{ width: '40%', justifyContent: 'flex-start' }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.grey, fontWeight: 'bold', }]}>Owner Name: </Text>
+                  <View style={CarDetailsStyles.RowContainer}>
+                    <View style={CarDetailsStyles.LabelView}>
+                      <Text style={[CarDetailsStyles.LabelText]}>Car Name:</Text>
                     </View>
-                    <View style={{ width: '60%', justifyContent: 'center', alignItems: 'flex-start', }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.black, fontWeight: 'bold' }]}>Awais</Text>
+                    <View style={CarDetailsStyles.ValueView}>
+                      <Text style={[CarDetailsStyles.ValueText]}>Awais</Text>
                     </View>
                   </View>
-                  <View style={{ flexDirection: 'row', marginHorizontal: height(2), marginTop: height(3) }}>
-                    <View style={{ width: '40%', justifyContent: 'flex-start' }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.grey, fontWeight: 'bold', }]}>Color: </Text>
+                  <View style={CarDetailsStyles.RowContainer}>
+                    <View style={CarDetailsStyles.LabelView}>
+                      <Text style={[CarDetailsStyles.LabelText]}>Reg Date:</Text>
                     </View>
-                    <View style={{ width: '60%', justifyContent: 'center', alignItems: 'flex-start', }}>
-                      <Text style={[{ fontSize: totalSize(2), color: colors.black, fontWeight: 'bold' }]}>Blue   </Text>
+                    <View style={CarDetailsStyles.ValueView}>
+                      <Text style={[CarDetailsStyles.ValueText]}>Awais</Text>
                     </View>
+                  </View>
+                  <View style={CarDetailsStyles.RowContainer}>
+                    <View style={CarDetailsStyles.LabelView}>
+                      <Text style={[CarDetailsStyles.LabelText]}>Owner Name:</Text>
+                    </View>
+                    <View style={CarDetailsStyles.ValueView}>
+                      <Text style={[CarDetailsStyles.ValueText]}>Awais</Text>
+                    </View>
+                  </View>
+                  <View style={CarDetailsStyles.RowContainer}>
+                    <View style={CarDetailsStyles.LabelView}>
+                      <Text style={[CarDetailsStyles.LabelText]}>Color:</Text>
+                    </View>
+                    <View style={CarDetailsStyles.ValueView}>
+                      <Text style={[CarDetailsStyles.ValueText]}>Awais</Text>
+                    </View>
+                  </View>
                   </View>
                 </ScrollView>
             </View>

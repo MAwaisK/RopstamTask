@@ -16,6 +16,26 @@ const CarDetailsStyles = StyleSheet.create({
         height: '25%',
         backgroundColor: colors.darkBlue,
     },
+    ArrowBackContainer:{
+        width: '90%', 
+        alignSelf: 'center', 
+        alignItems: 'flex-start', 
+        marginTop: height(2)
+    },
+    HeaderContentContainer:{
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginTop: height(0)
+    },
+    HeaderContentText:{
+        color: colors.white, 
+        fontSize: totalSize(2.7), 
+        fontWeight: 'bold'
+    },
+    Body:{
+        flex: 1,
+        marginTop: -height(11),
+    },
     CardContainer: {
         flex:1,
         width: '90%',
@@ -23,7 +43,7 @@ const CarDetailsStyles = StyleSheet.create({
         backgroundColor: colors.white,
         marginVertical: height(2),
         alignSelf: 'center',
-        borderRadius: 6,
+        borderRadius: 10,
 
     },
     Card: {
@@ -45,6 +65,44 @@ const CarDetailsStyles = StyleSheet.create({
             width: 2,
             height: 2,
         },
+    },
+    LogoConatiner:{
+        width: '100%', 
+        justifyContent: 'center', 
+        alignItems: 'center', 
+        marginVertical: height(2) 
+    },
+    ScrollViewContainer:{
+        flex:1
+    },
+    ContentContainer:{
+        flex:1,
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    RowContainer:{
+        flexDirection: 'row', 
+        marginHorizontal: height(2), 
+        marginTop: height(3)
+    },
+    LabelView:{
+        flex:1, 
+        alignItems: 'center',
+    },
+    LabelText:{
+        fontSize: totalSize(2), 
+        color: colors.grey, 
+        fontWeight: 'bold',
+    },
+    ValueView:{
+        flex:1, 
+        justifyContent: 'center', 
+        alignItems: 'flex-start',
+    },
+    ValueText:{
+        fontSize: totalSize(2), 
+        color: colors.black, 
+        fontWeight: 'bold'
     },
     SignInButtonStyle: {
         borderRadius: 40,
