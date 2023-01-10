@@ -77,6 +77,45 @@ const Dashboard = () => {
       owner_Name: 'Awais',
       color: 'white',
     },
+
+    {
+      registration_No: '1',
+      car_Name: 'Gli',
+      make_Name: 'Toyota',
+      registration_Date: 'Dec 12,2022',
+      modal_Number: 'Gli 2019',
+      owner_Name: 'Awais',
+      color: 'white',
+    },
+
+    {
+      registration_No: '1',
+      car_Name: 'Mazda',
+      make_Name: 'BMW',
+      registration_Date: 'Dec 12,2022',
+      modal_Number: 'Civic 2019',
+      owner_Name: 'Awais',
+      color: 'white',
+    },
+    {
+      registration_No: '1',
+      car_Name: 'Mercedes',
+      make_Name: 'Toyota',
+      registration_Date: 'Dec 12,2022',
+      modal_Number: 'Gli 2019',
+      owner_Name: 'Awais',
+      color: 'white',
+    },
+
+    {
+      registration_No: '1',
+      car_Name: 'Civic X',
+      make_Name: 'Tesla',
+      registration_Date: 'Dec 12,2022',
+      modal_Number: 'Civic 2019',
+      owner_Name: 'Awais',
+      color: 'white',
+    },
   ];
 
   const categoryList = [
@@ -92,33 +131,41 @@ const Dashboard = () => {
 
   const RenderCardView = (item, index) => {
     return (
-      <TouchableOpacity
-        activeOpacity={0.8}
-        onPress={() => {
-          navigation.navigate('CarDetails');
-        }}
-        style={[
-          DashboardStyles.CardContainer,
-          Platform.OS === 'ios' ? DashboardStyles.Card : DashboardStyles.Card2,
-        ]}>
-        <View style={DashboardStyles.CardRowContainer}>
-          <View style={DashboardStyles.CardLabelView}>
-            <Text style={[DashboardStyles.CardLabelBlackText]}>
-              {item?.modal_Number}
-            </Text>
-            <Text style={[DashboardStyles.CardLabelGrayText]}>
-              Reg No: {item?.registration_No}
-            </Text>
-          </View>
-          <View style={DashboardStyles.CardLogoView}>
-            {item?.make_Name === 'Toyota' ? (
-              <ToyotaLogo width={height(12)} height={height(12)} />
-            ) : (
-              <HondaLogo width={height(10)} height={height(10)} />
-            )}
-          </View>
-        </View>
-      </TouchableOpacity>
+      <>
+        {selectedCategory === item?.make_Name ? (
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={() => {
+              navigation.navigate('CarDetails');
+            }}
+            style={[
+              DashboardStyles.CardContainer,
+              Platform.OS === 'ios'
+                ? DashboardStyles.Card
+                : DashboardStyles.Card2,
+            ]}>
+            <View style={DashboardStyles.CardRowContainer}>
+              <View style={DashboardStyles.CardLabelView}>
+                <Text style={[DashboardStyles.CardLabelBlackText]}>
+                  {item?.modal_Number}
+                </Text>
+                <Text style={[DashboardStyles.CardLabelGrayText]}>
+                  Reg No: {item?.registration_No}
+                </Text>
+              </View>
+              <View style={DashboardStyles.CardLogoView}>
+                {item?.make_Name === 'Toyota' ? (
+                  <ToyotaLogo width={height(12)} height={height(12)} />
+                ) : (
+                  <HondaLogo width={height(10)} height={height(10)} />
+                )}
+              </View>
+            </View>
+          </TouchableOpacity>
+        ) : (
+          <></>
+        )}
+      </>
     );
   };
 
