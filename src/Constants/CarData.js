@@ -65,6 +65,14 @@ export default CarData = [
     },
     {
         registration_No: '1',
+        car_Name: 'Civic X',
+        make_Name: 'Honda',
+        modal_Number: 'Civic 2019',
+        owner_Name: 'Awais',
+        color: 'white',
+    },
+    {
+        registration_No: '1',
         car_Name: 'Mazda',
         make_Name: 'Suzukie',
         modal_Number: 'Civic 2019',

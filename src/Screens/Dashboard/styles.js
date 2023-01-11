@@ -107,7 +107,8 @@ const Styles = StyleSheet.create({
     CardLabelText: {
         color: Imports.Colors.white,
         fontSize: Imports.ScreenDimensions.totalSize(1.7),
-        marginVertical: Imports.ScreenDimensions.height(1.2)
+        marginVertical: Imports.ScreenDimensions.height(1.2),
+        alignSelf:'center',
     },
     SignInButtonStyle: {
         borderRadius: 40,
