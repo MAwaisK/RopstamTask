@@ -1,24 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, ScrollView, TouchableOpacity, Text, SafeAreaView, TextInput, Keyboard, ActivityIndicator, Image } from 'react-native';
-import AddCarSheetStyles from './AddCarSheetStyles';
+import Styles from './Styles';
 import AddCarSheetWrapper from "react-native-raw-bottom-sheet";
 // import CrossIcon from '../../../assets/images/CrossIcon.svg';
-import { useNavigation } from '@react-navigation/native';
-import { height, width, totalSize } from 'react-native-dimension';
-import { useDispatch } from 'react-redux';
-import colors from './Colors';
 // import DownArrow from '../../../assets/images/DownArrow.svg';
+import Imports from './Imports';
 
 const AddCar = (props) => {
-    const dispatch = useDispatch();
-    const navigation = useNavigation();
+    const navigation = Imports.Navigations.useNavigation();
+    const dispatch = Imports.Redux.useDispatch();
+    const scrollViewRef = useRef(null);
+
+    const makeList = Imports.Redux.useSelector(state => state?.app?.makeList);
+    const colorList = Imports.Redux.useSelector(state => state?.app?.colorList);
+    const carData = Imports.Redux.useSelector(state => state?.app?.carData);
 
     const [registrationNo, setRegistrationNo] = useState('');
     const [modalNumber, setModalNumber] = useState('');
     const [ownerName, setOwnerName] = useState('');
     const [color, setColor] = useState('');
     const [makeName, setMakeName] = useState('');
-    const [registrationDate, setRegistrationDate] = useState('');
     const [carName, setCarName] = useState('');
 
     const [isFocusRegistrationNo, setIsFocusRegistrationNo] = useState('');
@@ -26,15 +27,8 @@ const AddCar = (props) => {
     const [isFocusOwnerName, setIsFocusOwnerName] = useState('');
     const [isFocusColor, setIsFocusColor] = useState('');
     const [isFocusMakeName, setIsFocusMakeName] = useState('');
-    const [isFocusRegistrationDate, setIsFocusRegistrationDate] = useState('');
     const [isFocusCarName, setIsFocusCarName] = useState('');
     const [isMissingValue, setIsMissingValue] = useState('');
-
-    const [revisionNote, setRevisionNote] = useState('');
-    const [isSelectedOrderID, setIsSelectedOrderID] = useState(true);
-    const [isSelectedFile, setIsSelectedFile] = useState(true);
-    const [isSelectedRevisionNote, setIsSelectedRevisionNote] = useState(true);
-
 
 
     const RestAllValues = () => {
@@ -43,7 +37,6 @@ const AddCar = (props) => {
         setOwnerName('');
         setColor('');
         setMakeName('');
-        setRegistrationDate('');
         setCarName('');
     }
 
@@ -53,51 +46,102 @@ const AddCar = (props) => {
         setIsFocusOwnerName(false);
         setIsFocusColor(false);
         setIsFocusMakeName(false);
-        setIsFocusRegistrationDate(false);
         setIsFocusCarName(false);
     }
 
     const AddCar = () => {
-        if(registrationNo==='')
-        {
+        if (registrationNo === '') {
             setIsMissingValue('registrationNo');
+            scrollViewRef.current?.scrollTo({ x: 1, animated: true });
         }
-        else if(modalNumber==='')
-        {
+        else if (modalNumber === '') {
             setIsMissingValue('modalNumber');
+            scrollViewRef.current?.scrollTo({ x: 1, animated: true });
         }
-        else if(ownerName==='')
-        {
+        else if (ownerName === '') {
             setIsMissingValue('ownerName');
+            scrollViewRef.current?.scrollTo({ x: 1, animated: true });
         }
-        else if(registrationDate==='')
-        {
-            setIsMissingValue('registrationDate');
+        else if (makeName === '') {
+            setIsMissingValue('makeName');
         }
-        else if(ownerName==='')
-        {
-            setIsMissingValue('ownerName');
+        else if (color === '') {
+            setIsMissingValue('color');
         }
-        else if(modalNumber==='')
-        {
-            setIsMissingValue('modalNumber');
+        else if (carName === '') {
+            setIsMissingValue('carName');
         }
-        else if(ownerName==='')
-        {
-            setIsMissingValue('ownerName');
-        }
-        else
-        {
+        else {
+            // props.AddCarPassRef().current.close();
+            const newCarData = {
+                registration_No: registrationNo,
+                car_Name: carName,
+                make_Name: makeName,
+                modal_Number: modalNumber,
+                owner_Name: ownerName,
+                color: color,
+            }
+            console.log(newCarData);
+            let carDataArr=carData;
+            carDataArr.push(newCarData);
+            dispatch({
+                type: Imports.Types.CAR_DATA,
+                carData: carDataArr,
+               });
             props.AddCarPassRef().current.close();
         }
     }
 
-
+    const renderDropDownMake = () => {
+        return (
+          <Imports.SelectDropdown
+            renderDropdownIcon={() => <Imports.ArrowDown height={Imports.ScreenDimensions.height(2)} width={Imports.ScreenDimensions.height(2)}/>}
+            dropdownStyle={{
+              width: '90%',
+            }}
+            rowTextStyle={{
+              fontSize: 12,
+            }}
+            defaultButtonText={
+              makeName ? makeName : `Select Category`
+            }
+            buttonTextStyle={Styles.DropDownButtonTextStyle}
+            buttonStyle={Styles.DropDownButtonStyle}
+            data={makeList}
+            onSelect={(item, index) => {
+              setMakeName(item)
+            }}
+          />
+        );
+      };
+      const renderDropDownColor = () => {
+        return (
+          <Imports.SelectDropdown
+            renderDropdownIcon={() => <Imports.ArrowDown height={Imports.ScreenDimensions.height(2)} width={Imports.ScreenDimensions.height(2)}/> }
+            dropdownStyle={{
+              width: '90%',
+            }}
+            rowTextStyle={{
+              fontSize: 12,
+            }}
+            defaultButtonText={
+              color ? color : `Select color`
+            }
+            buttonTextStyle={Styles.DropDownButtonTextStyle}
+            buttonStyle={Styles.DropDownButtonStyle}
+            data={colorList}
+            onSelect={(item, index) => {
+              setColor(item)
+            }}
+          />
+        );
+      };
     return (
         <AddCarSheetWrapper
             ref={props.AddCarPassRef()}
             closeOnDragDown={false}
             closeOnPressMask={true}
+            onOpen={()=>RestAllValues()}
             animationType="slide"
             customStyles={{
                 wrapper: {
@@ -117,10 +161,10 @@ const AddCar = (props) => {
         >
 
             <SafeAreaView style={{ flex: 1 }}>
-                <View style={[AddCarSheetStyles.mainContainer]}>
-                    <View style={{ height: height(0.7), borderRadius: 10, backgroundColor: colors.grey, width: height(4), alignSelf: 'center', marginTop: height(1.2) }} />
-                    <View style={[AddCarSheetStyles.SetRowsiseProfileTextandCloseIcon]}>
-                        <Text style={[AddCarSheetStyles.ProfileText]}>Car Registration</Text>
+                <View style={[Styles.mainContainer]}>
+                    <View style={{ height: Imports.ScreenDimensions.height(0.7), borderRadius: 10, backgroundColor: Imports.Colors.grey, width: Imports.ScreenDimensions.height(4), alignSelf: 'center', marginTop: Imports.ScreenDimensions.height(1.2) }} />
+                    <View style={[Styles.SetRowsiseProfileTextandCloseIcon]}>
+                        <Text style={[Styles.ProfileText]}>Car Registration</Text>
                         <TouchableOpacity
                             hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
                             onPress={() => {
@@ -128,110 +172,86 @@ const AddCar = (props) => {
 
                             }
                             }
-                            style={[AddCarSheetStyles.CrossIconOuteraview]}>
+                            style={[Styles.CrossIconOuteraview]}>
                             {/* <CrossIcon /> */}
                         </TouchableOpacity>
                     </View>
                     <ScrollView
+                        ref={scrollViewRef}
                         showsVerticalScrollIndicator={false}
                         style={{ flex: 1 }}
                         contentContainerStyle={{ flexGrow: 1 }}>
 
-                        <Text style={[AddCarSheetStyles.LabelText]}>Registration number *</Text>
+                        <Text style={[Styles.LabelText]}>Registration number *</Text>
                         <TextInput
                             placeholder='Enter registration number'
                             placeholderTextColor='#5F6368'
                             value={registrationNo}
-                            onFocus={() => setIsFocusRegistrationNo(true)}
+                            keyboardType={'number-pad'}
+                            onFocus={() => {
+                                setIsFocusRegistrationNo(true);
+                                setIsMissingValue('');
+                            }}
                             onBlur={() => ResetAllFocus()}
                             onChangeText={(text) => {
                                 setRegistrationNo(text);
                             }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusRegistrationNo ? colors.darkBlue : colors.grey }]}
+                            style={[Styles.issueDetailTextInput, { color: '#000000', borderColor: isMissingValue === 'registrationNo' ? Imports.Colors.red : isFocusRegistrationNo ? Imports.Colors.darkBlue : Imports.Colors.grey }]}
                         />
 
 
-                        <Text style={[AddCarSheetStyles.LabelText]}>Modal number *</Text>
+                        <Text style={[Styles.LabelText]}>Modal number *</Text>
                         <TextInput
                             placeholder='Enter modal number'
                             placeholderTextColor='#5F6368'
                             value={modalNumber}
-                            onFocus={() => setIsFocusModalNumber(true)}
+                            onFocus={() => {
+                                setIsFocusModalNumber(true);
+                                setIsMissingValue('');
+                            }}
                             onBlur={() => ResetAllFocus()}
                             onChangeText={(text) => {
                                 setModalNumber(text)
                             }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusModalNumber ? colors.darkBlue : colors.grey }]}
+                            style={[Styles.issueDetailTextInput, { color: '#000000', borderColor: isMissingValue === 'modalNumber' ? Imports.Colors.red : isFocusModalNumber ? Imports.Colors.darkBlue : Imports.Colors.grey }]}
                         />
 
 
-                        <Text style={[AddCarSheetStyles.LabelText]}>Owner name *</Text>
+                        <Text style={[Styles.LabelText]}>Owner name *</Text>
                         <TextInput
                             placeholder='Enter owner name'
                             placeholderTextColor='#5F6368'
                             value={ownerName}
-                            onFocus={() => setIsFocusOwnerName(true)}
+                            onFocus={() => {
+                                setIsFocusOwnerName(true);
+                                setIsMissingValue('');
+                            }}
                             onBlur={() => ResetAllFocus()}
                             onChangeText={(text) => {
                                 setOwnerName(text)
                             }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusOwnerName ? colors.darkBlue : colors.grey }]}
+                            style={[Styles.issueDetailTextInput, { color: '#000000', borderColor: isMissingValue === 'ownerName' ? Imports.Colors.red : isFocusOwnerName ? Imports.Colors.darkBlue : Imports.Colors.grey }]}
                         />
 
 
-                        <Text style={[AddCarSheetStyles.LabelText]}>Select date *</Text>
-                        <TextInput
-                            placeholder='Enter date'
-                            placeholderTextColor='#5F6368'
-                            value={registrationDate}
-                            onFocus={() => setIsFocusRegistrationDate(true)}
-                            onBlur={() => ResetAllFocus()}
-                            onChangeText={(text) => {
-                                setRegistrationDate(text)
-                            }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusRegistrationDate ? colors.darkBlue : colors.grey }]}
-                        />
+                        <Text style={[Styles.LabelText]}>Make name *</Text>
+                        {renderDropDownMake()}
+
+                        <Text style={[Styles.LabelText]}>Select color</Text>
+                        {renderDropDownColor()}
 
 
-                        <Text style={[AddCarSheetStyles.LabelText]}>Make name *</Text>
-                        <TextInput
-                            placeholder='Enter make name'
-                            placeholderTextColor='#5F6368'
-                            value={makeName}
-                            onFocus={() => setIsFocusMakeName(true)}
-                            onBlur={() => ResetAllFocus()}
-                            onChangeText={(text) => {
-                                setMakeName(text)
-                            }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusMakeName ? colors.darkBlue : colors.grey }]}
-                        />
-
-
-                        <Text style={[AddCarSheetStyles.LabelText]}>Select color</Text>
-                        <TextInput
-                            placeholder='Enter color'
-                            placeholderTextColor='#5F6368'
-                            value={color}
-                            onFocus={() => setIsFocusColor(true)}
-                            onBlur={() => ResetAllFocus()}
-                            onChangeText={(text) => {
-                                setColor(text)
-                            }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusColor ? colors.darkBlue : colors.grey }]}
-                        />
-
-
-                        <Text style={[AddCarSheetStyles.LabelText]}>Car name</Text>
+                        <Text style={[Styles.LabelText]}>Car name</Text>
                         <TextInput
                             placeholder='Enter car name'
                             placeholderTextColor='#5F6368'
-                            value={color}
+                            value={carName}
                             onFocus={() => setIsFocusCarName(true)}
                             onBlur={() => ResetAllFocus()}
                             onChangeText={(text) => {
                                 setCarName(text)
                             }}
-                            style={[AddCarSheetStyles.issueDetailTextInput, { color: '#000000', borderColor: isFocusCarName ? colors.darkBlue : colors.grey }]}
+                            style={[Styles.issueDetailTextInput, { color: '#000000', borderColor: isMissingValue === 'carName' ? Imports.Colors.red : isFocusCarName ? Imports.Colors.darkBlue : Imports.Colors.grey }]}
                         />
 
 
@@ -244,8 +264,8 @@ const AddCar = (props) => {
                                     //props.AddCarPassRef().current.close();
                                     AddCar();
                                 }}
-                                style={[AddCarSheetStyles.SignInButtonStyle]}>
-                                <Text style={[AddCarSheetStyles.SignInText]}>Add car</Text>
+                                style={[Styles.SignInButtonStyle]}>
+                                <Text style={[Styles.SignInText]}>Add car</Text>
                             </TouchableOpacity>
                         </TouchableOpacity>
                     </ScrollView>

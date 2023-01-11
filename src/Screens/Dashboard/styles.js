@@ -33,7 +33,7 @@ const Styles = StyleSheet.create({
     HeaderContent: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: Imports.ScreenDimensions.height(2)
+        marginTop: Imports.ScreenDimensions.height(1)
     },
     HeaderContentText: {
         color: Imports.Colors.white,
@@ -77,7 +77,10 @@ const Styles = StyleSheet.create({
     InnerCardContainer: {
         flexDirection: "row",
         alignSelf: 'center',
-        marginTop: Imports.ScreenDimensions.height(2)
+        marginTop: Imports.ScreenDimensions.height(2),
+        flexWrap:'wrap',
+        // backgroundColor: 'red',
+        marginLeft:Imports.ScreenDimensions.height(1.2)
     },
     InnerCardLeftStyle: {
         height: Imports.ScreenDimensions.height(14),

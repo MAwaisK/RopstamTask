@@ -1,52 +1,38 @@
-import React, { } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, Platform, ScrollView } from 'react-native';
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
+import Data from '../../Constants/Data';
+import CarData from '../../Constants/CarData';
+import MakeList from '../../Constants/MakeList';
+import ColorList from '../../Constants/ColorList';
 
 const Dashboard = () => {
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
+  const carData = Imports.Redux.useSelector(state => state?.app?.carData);
 
-  const DATA = [
-    {
-      registration_No: '1',
-      car_Name: 'Gli',
-      make_Name: 'Toyota',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Gli 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
 
-    {
-      registration_No: '1',
-      car_Name: 'Civic X',
-      make_Name: 'Honda',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Civic 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
-    {
-      registration_No: '1',
-      car_Name: 'Gli',
-      make_Name: 'Toyota',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Gli 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
 
-    {
-      registration_No: '1',
-      car_Name: 'Civic X',
-      make_Name: 'Honda',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Civic 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
-  ];
+  useEffect(() => {
+    console.log("carData", carData?.length);
+    if (!carData) {
+      dispatch({
+        type: Imports.Types.CAR_DATA,
+        carData: CarData,
+      });
+    }
+    dispatch({
+      type: Imports.Types.MAKE_LIST,
+      makeList: MakeList,
+    });
+    dispatch({
+      type: Imports.Types.COLOR_LIST,
+      colorList: ColorList,
+    });
+
+  }, [])
+
 
   const CategoryDetails = category => {
     dispatch({
@@ -80,10 +66,12 @@ const Dashboard = () => {
                 <Text style={Styles.HeaderContentText}>
                   Dashboard{' '}
                 </Text>
+                <Text style={[Styles.HeaderContentText, { fontSize: Imports.ScreenDimensions.totalSize(1.7), alignSelf: 'flex-end', marginRight: Imports.ScreenDimensions.height(2.5) }]}>
+                  Total Cars: {carData.length}
+                </Text>
               </View>
             </>
           </View>
-
           <View style={Styles.Body}>
             <View
               style={[
@@ -94,124 +82,34 @@ const Dashboard = () => {
               ]}>
               <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={Styles.InnerCardContainer}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('BMW')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardLeftStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.BMWLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Honda')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardRightStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.HondaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={Styles.InnerCardContainer}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Hyundai')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardLeftStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.HyundaiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Mazda')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardRightStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.MazdaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={Styles.InnerCardContainer}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Mercedes')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardLeftStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.MercedesLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Suzukie')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardRightStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.SuzukiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                </View>
-                <View style={Styles.InnerCardContainer}>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Tesla')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardLeftStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.TeslaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.8}
-                    onPress={() => CategoryDetails('Toyota')}
-                    style={[
-                      Platform.OS === 'ios'
-                        ? Styles.Card3
-                        : Styles.Card4,
-                      Styles.InnerCardRightStyle,
-                    ]}>
-                    <View style={Styles.LogoContainer}>
-                      <Imports.ToyotaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    </View>
-                    <Text style={Styles.CardLabelText}>(12)</Text>
-                  </TouchableOpacity>
+                  {
+                    Data.map((item, index) => {
+
+                      return (
+                        <TouchableOpacity
+                          key={index}
+                          activeOpacity={0.8}
+                          onPress={() => CategoryDetails(item?.Label)}
+                          style={[
+                            Platform.OS === 'ios'
+                              ? Styles.Card3
+                              : Styles.Card4,
+                            Styles.InnerCardLeftStyle,
+                          ]}>
+                          <View style={Styles.LogoContainer}>
+                            {item?.Label === 'BMW' ? <Imports.BMWLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                              : item?.Label === 'Honda' ? <Imports.HondaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                                : item?.Label === 'Hyundai' ? <Imports.HyundaiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                                  : item?.Label === 'Mazda' ? <Imports.MazdaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                                    : item?.Label === 'Mercedes' ? <Imports.MercedesLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                                      : item?.Label === 'Suzukie' ? <Imports.SuzukiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                                        : item?.Label === 'Tesla' ? <Imports.TeslaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                                          : item?.Label === 'Toyota' && <Imports.ToyotaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />}
+                          </View>
+                        </TouchableOpacity>
+                      )
+                    })
+                  }
                 </View>
               </ScrollView>
             </View>

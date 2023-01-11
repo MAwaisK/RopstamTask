@@ -36,7 +36,8 @@ const Styles = StyleSheet.create({
   HeaderTextView: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: Imports.ScreenDimensions.height(2.2),
+    marginTop: Imports.ScreenDimensions.height(1.4),
+
   },
   HeaderTextStyle: {
     color: Imports.Colors.white,
@@ -45,12 +46,11 @@ const Styles = StyleSheet.create({
   },
   ScrollViewContainer: {
     flex: 1,
-    marginTop: -Imports.ScreenDimensions.height(5),
+    marginTop: -Imports.ScreenDimensions.height(4),
   },
   CardContainer: {
     flex: 1,
     width: '90%',
-    paddingVertical: Imports.ScreenDimensions.height(1.3),
     backgroundColor: Imports.Colors.white,
     marginVertical: Imports.ScreenDimensions.height(2),
     alignSelf: 'center',
@@ -78,11 +78,14 @@ const Styles = StyleSheet.create({
   },
   CardRowContainer: {
     flexDirection: 'row',
-    marginTop: Imports.ScreenDimensions.height(1.5),
+    flex:1,
+    //marginTop: Imports.ScreenDimensions.height(1.5),
     marginHorizontal: Imports.ScreenDimensions.height(1.2),
+    marginVertical: Imports.ScreenDimensions.height(1.2),
   },
   CardLabelView: {
-    width: '50%',
+    // width: '50%',
+    flex: 0.4,
     justifyContent: 'center',
   },
   CardLabelBlackText: {
@@ -91,7 +94,8 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   CardLogoView: {
-    width: '50%',
+    //width: '35%',
+    flex: 0.4,
     justifyContent: 'center',
     alignItems: 'flex-end',
   },
@@ -112,6 +116,17 @@ const Styles = StyleSheet.create({
     textAlign: 'left',
     color: '#B1A9A9',
     fontSize: Imports.ScreenDimensions.totalSize(1.4),
+  },
+  EditContainer:{
+    color: Imports.Colors.white,
+    height:'50%',
+    justifyContent:'flex-start',
+
+  },
+  DaleteContainer:{
+    color: Imports.Colors.white,
+    height:'50%',
+    justifyContent:'flex-end',
   },
   SignInButtonStyle: {
     borderRadius: 40,

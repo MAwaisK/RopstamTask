@@ -3,55 +3,10 @@ import { View, Text, SafeAreaView, TouchableOpacity, Platform, ScrollView } from
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 
-const Details = () => {
+const Details = (props) => {
+  const { car_Name, color, make_Name, modal_Number, owner_Name, registration_Date, registration_No } = props?.route?.params?.item;
   const navigation = Imports.Navigations.useNavigation();
-  const dispatch = Imports.Redux.useDispatch();
-
-  const [selectedCategory, setSelectedCategory] = useState('');
-  const [selectedType, setSelectedType] = useState('');
-
-
-  const DATA = [
-    {
-      registration_No: '1',
-      car_Name: 'Gli',
-      make_Name: 'Toyota',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Gli 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
-
-    {
-      registration_No: '1',
-      car_Name: 'Civic X',
-      make_Name: 'Honda',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Civic 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
-    {
-      registration_No: '1',
-      car_Name: 'Gli',
-      make_Name: 'Toyota',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Gli 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
-
-    {
-      registration_No: '1',
-      car_Name: 'Civic X',
-      make_Name: 'Honda',
-      registration_Date: 'Dec 12,2022',
-      modal_Number: 'Civic 2019',
-      owner_Name: 'Awais',
-      color: 'white',
-    },
-
-  ];
+  const selectedCategory = Imports.Redux.useSelector(state => state?.app?.selectedCategory);
 
 
   return (
@@ -68,7 +23,7 @@ const Details = () => {
                 <Imports.ArrowBack />
               </TouchableOpacity>
               <View style={Styles.HeaderContentContainer}>
-                <Text style={Styles.HeaderContentText}>{`${selectedCategory}`}Toyota </Text>
+                <Text style={Styles.HeaderContentText}>{`${selectedCategory}`} </Text>
               </View>
             </>
           </View>
@@ -76,7 +31,14 @@ const Details = () => {
             <View
               style={[Styles.CardContainer, Platform.OS === 'ios' ? Styles.Card : Styles.Card2]}>
               <View style={Styles.LogoConatiner}>
-                <Imports.ToyotaLogo width={Imports.ScreenDimensions.height(17)} height={Imports.ScreenDimensions.height(17)} />
+                {make_Name === 'BMW' ? <Imports.BMWLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                  : make_Name === 'Honda' ? <Imports.HondaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                    : make_Name === 'Hyundai' ? <Imports.HyundaiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                      : make_Name === 'Mazda' ? <Imports.MazdaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                        : make_Name === 'Mercedes' ? <Imports.MercedesLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                          : make_Name === 'Suzukie' ? <Imports.SuzukiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                            : make_Name === 'Tesla' ? <Imports.TeslaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
+                              : make_Name === 'Toyota' && <Imports.ToyotaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />}
               </View>
               <ScrollView
                 style={Styles.ScrollViewContainer}
@@ -87,15 +49,15 @@ const Details = () => {
                       <Text style={[Styles.LabelText]}>Reg No:</Text>
                     </View>
                     <View style={Styles.ValueView}>
-                      <Text style={[Styles.ValueText]}>Awais</Text>
+                      <Text style={[Styles.ValueText]}>{registration_No}</Text>
                     </View>
                   </View>
                   <View style={Styles.RowContainer}>
                     <View style={Styles.LabelView}>
-                      <Text style={[Styles.LabelText]}>Modal Name:</Text>
+                      <Text style={[Styles.LabelText]}>Make Name:</Text>
                     </View>
                     <View style={Styles.ValueView}>
-                      <Text style={[Styles.ValueText]}>Awais</Text>
+                      <Text style={[Styles.ValueText]}>{make_Name}</Text>
                     </View>
                   </View>
                   <View style={Styles.RowContainer}>
@@ -103,15 +65,15 @@ const Details = () => {
                       <Text style={[Styles.LabelText]}>Car Name:</Text>
                     </View>
                     <View style={Styles.ValueView}>
-                      <Text style={[Styles.ValueText]}>Awais</Text>
+                      <Text style={[Styles.ValueText]}>{car_Name}</Text>
                     </View>
                   </View>
                   <View style={Styles.RowContainer}>
                     <View style={Styles.LabelView}>
-                      <Text style={[Styles.LabelText]}>Reg Date:</Text>
+                      <Text style={[Styles.LabelText]}>Model Number:</Text>
                     </View>
                     <View style={Styles.ValueView}>
-                      <Text style={[Styles.ValueText]}>Awais</Text>
+                      <Text style={[Styles.ValueText]}>{modal_Number}</Text>
                     </View>
                   </View>
                   <View style={Styles.RowContainer}>
@@ -119,7 +81,7 @@ const Details = () => {
                       <Text style={[Styles.LabelText]}>Owner Name:</Text>
                     </View>
                     <View style={Styles.ValueView}>
-                      <Text style={[Styles.ValueText]}>Awais</Text>
+                      <Text style={[Styles.ValueText]}>{owner_Name}</Text>
                     </View>
                   </View>
                   <View style={Styles.RowContainer}>
@@ -127,7 +89,7 @@ const Details = () => {
                       <Text style={[Styles.LabelText]}>Color:</Text>
                     </View>
                     <View style={Styles.ValueView}>
-                      <Text style={[Styles.ValueText]}>Awais</Text>
+                      <Text style={[Styles.ValueText]}>{color}</Text>
                     </View>
                   </View>
                 </View>

@@ -1,72 +1,81 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { height, totalSize, width } from 'react-native-dimension';
-import colors from './Colors';
-const NewRequestRevisionSheetStyles = StyleSheet.create({
+import Imports from './Imports';
+
+const Styles = StyleSheet.create({
     mainContainer: {
         flex: 1,
         paddingHorizontal: 16
     },
     SetRowsiseProfileTextandCloseIcon: {
         flexDirection: 'row',
-        marginBottom: height(2.5),
+        marginBottom: Imports.ScreenDimensions.height(2.5),
         justifyContent: 'space-between',
-        marginTop:height(2)
+        marginTop: Imports.ScreenDimensions.height(2)
     },
+    DropDownButtonStyle: {
+        width: '100%',
+        height: Imports.ScreenDimensions.height(4.5),
+        //flexDirection: 'row-reverse',
+        backgroundColor: '#FFF',
+        borderRadius: 7,
+        borderWidth:1,
+        borderColor:Imports.Colors.grey,
+      },
+      DropDownButtonTextStyle: {
+        textAlign: 'left',
+        fontSize: Imports.ScreenDimensions.totalSize(1.4),
+      },
     ProfileText: {
         color: "#0F0F0F",
-        fontSize: totalSize(2.0),
-        fontFamily: 'Roboto-Medium',
+        fontSize: Imports.ScreenDimensions.totalSize(2.0),
     },
     CardWithPenOuterView: {
         alignSelf: 'center',
     },
     SubTitleContainer: {
-        marginTop: height(1),
-        marginBottom: height(3)
+        marginTop: Imports.ScreenDimensions.height(1),
+        marginBottom: Imports.ScreenDimensions.height(3)
     },
     PleaseFillText: {
         color: "#333333",
-        fontSize: totalSize(1.6),
-        fontFamily: 'Roboto-Regular',
+        fontSize:Imports.ScreenDimensions.totalSize(1.6),
         textAlign: 'auto',
     },
     TextInputOuterView: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginTop: height(1),
+        marginTop: Imports.ScreenDimensions.height(1),
         borderWidth: 1,
         borderColor: 'rgba(218, 220, 224, 1)',
-        height: height(4.5),
+        height: Imports.ScreenDimensions.height(4.5),
         alignItems: 'center',
         paddingHorizontal: 12,
-        marginBottom: height(1),
+        marginBottom: Imports.ScreenDimensions.height(1),
         borderRadius: 5,
     },
     placeholderText: {
-        fontFamily: 'Roboto-Regular',
         color: '#5F6368',
-        fontSize: totalSize(1.5),
+        fontSize: Imports.ScreenDimensions.totalSize(1.5),
     },
     issueDetailTextInput: {
-        height: height(5),
+        height: Imports.ScreenDimensions.height(5),
         textAlignVertical: 'top',
         paddingHorizontal: 12,
         borderWidth: 1,
-        borderColor: colors.grey,
+        borderColor: Imports.Colors.grey,
         borderRadius: 7,
     },
     LabelText: {
-        fontFamily: 'Roboto-Medium',
         color: '#9BA0A4',
-        fontSize: totalSize(1.5),
-        marginVertical: height(1),
+        fontSize: Imports.ScreenDimensions.totalSize(1.5),
+        marginVertical: Imports.ScreenDimensions.height(1),
     },
     setRowWise: {
         flexDirection: 'row',
         borderWidth: 1,
         borderColor: 'rgba(218, 220, 224, 1)',
-        padding: height(2),
+        padding: Imports.ScreenDimensions.height(2),
         justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 5,
@@ -76,22 +85,20 @@ const NewRequestRevisionSheetStyles = StyleSheet.create({
         alignItems: 'center',
     },
     FileNameText: {
-        fontFamily: 'Roboto-Medium',
         color: '#000000',
-        fontSize: totalSize(1.4),
+        fontSize: Imports.ScreenDimensions.totalSize(1.4),
         marginLeft: 7,
     },
     FileSizeText: {
-        fontFamily: 'Roboto-Regular',
         color: '#BABABA',
-        fontSize: totalSize(1.2),
+        fontSize: Imports.ScreenDimensions.totalSize(1.2),
         marginLeft: 6,
         marginTop: 2,
     },
     ConfirmButtonContainer: {
         flexDirection: 'row',
         backgroundColor: '#1967D7',
-        marginVertical: height(3),
+        marginVertical: Imports.ScreenDimensions.height(3),
         padding: 10,
         justifyContent: 'space-between',
         borderRadius: 5,
@@ -100,15 +107,14 @@ const NewRequestRevisionSheetStyles = StyleSheet.create({
     },
     ConfirmButtonText: {
         color: '#FFFFFF',
-        fontSize: totalSize(1.8),
+        fontSize: Imports.ScreenDimensions.totalSize(1.8),
         marginLeft: 5,
-        fontFamily: 'Roboto-Medium',
     },
     setRowWisedocpicandbigplus: {
         flexDirection: 'row',
         borderWidth: 1,
         borderColor: 'rgba(218, 220, 224, 1)',
-        padding:height(2),
+        padding: Imports.ScreenDimensions.height(2),
         justifyContent:'space-between',
         alignItems:'center',
         borderRadius:5,
@@ -118,38 +124,35 @@ const NewRequestRevisionSheetStyles = StyleSheet.create({
      alignItems:'center',
     },
     FileNameText:{
-        fontFamily: 'Roboto-Medium',
         color: '#000000',
-        fontSize: totalSize(1.4),
+        fontSize: Imports.ScreenDimensions.totalSize(1.4),
         marginLeft:7,
     },
     FileNameText:{
-        fontFamily: 'Roboto-Medium',
         color: '#000000',
-        fontSize: totalSize(1.4),
+        fontSize: Imports.ScreenDimensions.totalSize(1.4),
         marginLeft:7,
     },
     FileSizeText:{
-        fontFamily: 'Roboto-Regular',
         color: '#BABABA',
-        fontSize: totalSize(1.2),
+        fontSize: Imports.ScreenDimensions.totalSize(1.2),
         marginLeft:6, 
         marginTop: 2,
     },
     SignInButtonStyle: {
         borderRadius: 40,
-        marginHorizontal: height(4),
-        height: height(5.5),
+        marginHorizontal: Imports.ScreenDimensions.height(4),
+        height: Imports.ScreenDimensions.height(5.5),
         backgroundColor: 'rgba(4,34,70,1)',
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: height(2),
+        marginVertical: Imports.ScreenDimensions.height(2),
       },
       SignInText: {
-        fontSize: totalSize(1.8),
+        fontSize: Imports.ScreenDimensions.totalSize(1.8),
         color: 'rgba(255,255,255,1)',
         fontWeight: '500',
         //fontFamily: 'Roboto-Regular',
       },
 })
-export default NewRequestRevisionSheetStyles;
+export default Styles;

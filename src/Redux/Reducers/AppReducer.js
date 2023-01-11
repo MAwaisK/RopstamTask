@@ -3,6 +3,9 @@ import types from '../types';
 const INITIAL_STATE = {
   loginKey: '',
   user: [],
+  carData:[],
+  colorList:[],
+  makeList:[],
   selectedCategory: '',
 };
 
@@ -20,6 +23,24 @@ export default (state = INITIAL_STATE, action) => {
         user: action.user,
       };
 
+      case types.CAR_DATA:
+      return {
+        ...state,
+        carData: action.carData,
+      };
+
+      case types.MAKE_LIST:
+      return {
+        ...state,
+        makeList: action.makeList,
+      };
+
+      case types.COLOR_LIST:
+      return {
+        ...state,
+        colorList: action.colorList,
+      };
+
     case types.SELECTED_CATEGORY:
       return {
         ...state,
@@ -31,6 +52,7 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         loginKey: '',
         user: [],
+        carData:[],
         selectedCategory,
       };
 
