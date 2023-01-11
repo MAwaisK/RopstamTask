@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import { height, totalSize, width } from 'react-native-dimension';
-import colors from '../../Colors';
+import colors from './Colors';
 const NewRequestRevisionSheetStyles = StyleSheet.create({
     mainContainer: {
         flex: 1,

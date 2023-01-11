@@ -6,7 +6,7 @@ import AddCarSheetWrapper from "react-native-raw-bottom-sheet";
 import { useNavigation } from '@react-navigation/native';
 import { height, width, totalSize } from 'react-native-dimension';
 import { useDispatch } from 'react-redux';
-import colors from '../../Colors';
+import colors from './Colors';
 // import DownArrow from '../../../assets/images/DownArrow.svg';
 
 const AddCar = (props) => {

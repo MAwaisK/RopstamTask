@@ -1,30 +1,13 @@
-import React, {useState} from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Dimensions,
-  Image,
-} from 'react-native';
-
+import React, { useState } from 'react';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, Dimensions, Image } from 'react-native';
 import SignUpStyles from './styles';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {height, width, totalSize} from 'react-native-dimension';
-import KeyBoardStatus from '../../CustomHooks/KeyBoardStatus/KeyBoardStatus';
-import colors from '../../Constants/Colors';
-import types from '../../Redux/types';
+import Imports from '../../Constants/Imports';
 
 const SignUp = () => {
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-  const [keyboardStatus] = KeyBoardStatus();
-
-  const [avaiableHeight, setavaiableHeight] = useState(
-    Dimensions.get('screen').height,
-  );
+  const dispatch = Imports.Redux.useDispatch();
+  const navigation = Imports.Navigations.useNavigation();
+  const [keyboardStatus] = Imports.KeyBoardStatus();
+  const [avaiableHeight, setavaiableHeight] = useState(Dimensions.get('screen').height);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -32,7 +15,7 @@ const SignUp = () => {
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
-  const SignUp = () => {};
+  const SignUp = () => { };
 
   return (
     <View style={[SignUpStyles.Main]}>
@@ -49,7 +32,7 @@ const SignUp = () => {
             justifyContent: 'center',
             height: avaiableHeight - avaiableHeight / 4,
           }}>
-          <View style={{justifyContent: 'center'}}>
+          <View style={{ justifyContent: 'center' }}>
             <Image
               //resizeMode='cover'
               source={require('../../assets/Ropstam_Logo.png')}
@@ -64,13 +47,13 @@ const SignUp = () => {
               SignUpStyles.TextInputView,
               {
                 borderBottomColor: isFocusedName
-                  ? colors.darkBlue
-                  : colors.grey,
+                  ? Imports.Colors.darkBlue
+                  : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter name'}
-              placeholderTextColor={colors.grey}
+              placeholderTextColor={Imports.Colors.grey}
               value={name}
               onFocus={() => setIsFocusedName(true)}
               onBlur={() => setIsFocusedName(false)}
@@ -79,20 +62,20 @@ const SignUp = () => {
             />
           </View>
 
-          <View style={{marginVertical: height(1)}} />
+          <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
 
           <View
             style={[
               SignUpStyles.TextInputView,
               {
                 borderBottomColor: isFocusedEmail
-                  ? colors.darkBlue
-                  : colors.grey,
+                  ? Imports.Colors.darkBlue
+                  : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter email'}
-              placeholderTextColor={colors.grey}
+              placeholderTextColor={Imports.Colors.grey}
               value={email}
               onFocus={() => setIsFocusedEmail(true)}
               onBlur={() => setIsFocusedEmail(false)}
@@ -100,19 +83,19 @@ const SignUp = () => {
               style={SignUpStyles.TextInputStyle}
             />
           </View>
-          <View style={{marginVertical: height(1)}} />
+          <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
           <View
             style={[
               SignUpStyles.TextInputView,
               {
                 borderBottomColor: isFocusedPassword
-                  ? colors.darkBlue
-                  : colors.grey,
+                  ? Imports.Colors.darkBlue
+                  : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter password'}
-              placeholderTextColor={colors.grey}
+              placeholderTextColor={Imports.Colors.grey}
               value={password}
               onFocus={() => setIsFocusedPassword(true)}
               onBlur={() => setIsFocusedPassword(false)}
@@ -132,7 +115,7 @@ const SignUp = () => {
               Already have an account?
             </Text>
             <TouchableOpacity
-              hitSlop={{bottom: 15, top: 15, left: 15, right: 15}}
+              hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
               onPress={() => {
                 navigation.navigate('SignIn');
               }}>

@@ -1,9 +1,7 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import {height, totalSize} from 'react-native-dimension';
-import colors from '../../Constants/Colors';
+import Imports from '../../Constants/Imports';
 
-const AppStartingStyle = StyleSheet.create({
+const Styles = StyleSheet.create({
   ImageContainer: {
     flex: 1,
   },
@@ -19,40 +17,39 @@ const AppStartingStyle = StyleSheet.create({
   LogoStyle: {
     width: '100%',
     height: '20%',
-    marginTop: height(5),
+    marginTop:Imports.ScreenDimensions.height(5),
   },
   FooterContentView: {
     flex: 0.3,
   },
   SignInButtonStyle: {
     borderRadius: 40,
-    marginHorizontal: height(4),
-    height: height(5.5),
-    marginTop: height(5),
-    backgroundColor: colors.white,
+    marginHorizontal: Imports.ScreenDimensions.height(4),
+    height: Imports.ScreenDimensions.height(5.5),
+    marginTop: Imports.ScreenDimensions.height(5),
+    backgroundColor: Imports.Colors.white,
     alignItems: 'center',
     justifyContent: 'center',
   },
   SignInText: {
-    fontSize: totalSize(1.8),
+    fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(4,34,70,1)',
     fontWeight: '500',
-    //fontFamily: 'Roboto-Regular',
   },
   SignUpButtonStyle: {
     borderRadius: 40,
-    marginHorizontal: height(4),
-    height: height(5.5),
-    marginTop: height(5),
+    marginHorizontal: Imports.ScreenDimensions.height(4),
+    height: Imports.ScreenDimensions.height(5.5),
+    marginTop: Imports.ScreenDimensions.height(5),
     backgroundColor: 'rgba(4,34,70,1)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   SignUpText: {
-    fontSize: totalSize(1.8),
+    fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(255,255,255,1)',
     fontWeight: '500',
-    //fontFamily: 'Roboto-Regular',
   },
 });
-export default AppStartingStyle;
+
+export default Styles;

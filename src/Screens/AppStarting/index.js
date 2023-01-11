@@ -1,43 +1,34 @@
-import React, {useState, useMemo} from 'react';
-import {
-  ImageBackground,
-  TouchableOpacity,
-  Text,
-  View,
-  Image,
-  StatusBar,
-  SafeAreaView,
-} from 'react-native';
-import {height} from 'react-native-dimension';
-import AppStartingStyle from './styles';
-import {useNavigation} from '@react-navigation/native';
+import React, { } from 'react';
+import { ImageBackground, TouchableOpacity, Text, View, Image, SafeAreaView, } from 'react-native';
+import Styles from './styles';
+import Imports from '../../Constants/Imports';
 
 const AppStarting = () => {
-  const navigation = useNavigation();
+  const navigation = Imports.Navigations.useNavigation();
 
   return (
     <ImageBackground
-      source={require('../../assets/yyy.jpeg')}
-      style={AppStartingStyle.ImageContainer}>
-      <SafeAreaView style={AppStartingStyle.SafeAreaView}>
-        <View style={AppStartingStyle.ContentContainer}>
-          <View style={AppStartingStyle.HeaderContentView}>
+      source={Imports.BackgroundImage}
+      style={Styles.ImageContainer}>
+      <SafeAreaView style={Styles.SafeAreaView}>
+        <View style={Styles.ContentContainer}>
+          <View style={Styles.HeaderContentView}>
             <Image
               resizeMode="contain"
-              source={require('../../assets/Ropstam_Logo.png')}
-              style={AppStartingStyle.LogoStyle}
+              source={Imports.LogoImage}
+              style={Styles.LogoStyle}
             />
           </View>
-          <View style={AppStartingStyle.FooterContentView}>
+          <View style={Styles.FooterContentView}>
             <TouchableOpacity
               onPress={() => navigation.navigate('SignUp')}
-              style={[AppStartingStyle.SignUpButtonStyle]}>
-              <Text style={[AppStartingStyle.SignUpText]}>Sign Up</Text>
+              style={[Styles.SignUpButtonStyle]}>
+              <Text style={[Styles.SignUpText]}>Sign Up</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigation.navigate('SignIn')}
-              style={[AppStartingStyle.SignInButtonStyle]}>
-              <Text style={[AppStartingStyle.SignInText]}>Sign In</Text>
+              style={[Styles.SignInButtonStyle]}>
+              <Text style={[Styles.SignInText]}>Sign In</Text>
             </TouchableOpacity>
           </View>
         </View>

@@ -1,47 +1,46 @@
-import { StyleSheet } from 'react-native';
-import { totalSize, width, height } from 'react-native-dimension';
-import colors from '../../Constants/Colors'
+import {StyleSheet} from 'react-native';
+import Imports from '../../Constants/Imports';
 
-const CarDetailsStyles = StyleSheet.create({
+const Styles = StyleSheet.create({
     SafeArea: {
         flex: 0,
-        backgroundColor: colors.darkBlue,
+        backgroundColor: Imports.Colors.darkBlue,
     },
     Container: {
         flex: 1,
-        backgroundColor: colors.white,
+        backgroundColor: Imports.Colors.white,
     },
     Header: {
         width: '100%',
         height: '25%',
-        backgroundColor: colors.darkBlue,
+        backgroundColor: Imports.Colors.darkBlue,
     },
     ArrowBackContainer:{
         width: '90%', 
         alignSelf: 'center', 
         alignItems: 'flex-start', 
-        marginTop: height(2)
+        marginTop:Imports.ScreenDimensions.height(2)
     },
     HeaderContentContainer:{
         justifyContent: 'center', 
         alignItems: 'center', 
-        marginTop: height(0)
+        marginTop: Imports.ScreenDimensions.height(0)
     },
     HeaderContentText:{
-        color: colors.white, 
-        fontSize: totalSize(2.7), 
+        color: Imports.Colors.white, 
+        fontSize: Imports.ScreenDimensions.totalSize(2.7), 
         fontWeight: 'bold'
     },
     Body:{
         flex: 1,
-        marginTop: -height(11),
+        marginTop: -Imports.ScreenDimensions.height(11),
     },
     CardContainer: {
         flex:1,
         width: '90%',
-        paddingVertical:height(1.3),
-        backgroundColor: colors.white,
-        marginVertical: height(2),
+        paddingVertical:Imports.ScreenDimensions.height(1.3),
+        backgroundColor: Imports.Colors.white,
+        marginVertical:Imports.ScreenDimensions.height(2),
         alignSelf: 'center',
         borderRadius: 10,
 
@@ -60,7 +59,7 @@ const CarDetailsStyles = StyleSheet.create({
         shadowColor: '#646464',
         shadowOpacity: 15,
         elevation: 5,
-        backgroundColor: colors.white,
+        backgroundColor: Imports.Colors.white,
         shadowOffset: {
             width: 2,
             height: 2,
@@ -70,7 +69,7 @@ const CarDetailsStyles = StyleSheet.create({
         width: '100%', 
         justifyContent: 'center', 
         alignItems: 'center', 
-        marginVertical: height(2) 
+        marginVertical: Imports.ScreenDimensions.height(2) 
     },
     ScrollViewContainer:{
         flex:1
@@ -82,16 +81,16 @@ const CarDetailsStyles = StyleSheet.create({
     },
     RowContainer:{
         flexDirection: 'row', 
-        marginHorizontal: height(2), 
-        marginTop: height(3)
+        marginHorizontal: Imports.ScreenDimensions.height(2), 
+        marginTop: Imports.ScreenDimensions.height(3)
     },
     LabelView:{
         flex:1, 
         alignItems: 'center',
     },
     LabelText:{
-        fontSize: totalSize(2), 
-        color: colors.grey, 
+        fontSize: Imports.ScreenDimensions.totalSize(2), 
+        color: Imports.Colors.grey, 
         fontWeight: 'bold',
     },
     ValueView:{
@@ -100,21 +99,21 @@ const CarDetailsStyles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     ValueText:{
-        fontSize: totalSize(2), 
-        color: colors.black, 
+        fontSize: Imports.ScreenDimensions.totalSize(2), 
+        color: Imports.Colors.black, 
         fontWeight: 'bold'
     },
     SignInButtonStyle: {
         borderRadius: 40,
-        marginHorizontal: height(4),
-        height: height(5.5),
+        marginHorizontal: Imports.ScreenDimensions.height(4),
+        height: Imports.ScreenDimensions.height(5.5),
         backgroundColor: 'rgba(4,34,70,1)',
         alignItems: 'center',
         justifyContent: 'center',
-        marginVertical: height(2),
+        marginVertical:Imports.ScreenDimensions.height(2),
       },
       SignInText: {
-        fontSize: totalSize(1.8),
+        fontSize: Imports.ScreenDimensions.totalSize(1.8),
         color: 'rgba(255,255,255,1)',
         fontWeight: '500',
         //fontFamily: 'Roboto-Regular',
@@ -122,4 +121,4 @@ const CarDetailsStyles = StyleSheet.create({
 
 });
 
-export default CarDetailsStyles;
+export default Styles;

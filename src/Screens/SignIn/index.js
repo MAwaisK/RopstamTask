@@ -1,31 +1,14 @@
-import React, {useState, useMemo} from 'react';
-import {
-  ScrollView,
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
-  Keyboard,
-  Dimensions,
-  KeyboardAvoidingView,
-  Image,
-} from 'react-native';
-
+import React, { useState, useMemo } from 'react';
+import { ScrollView, View, Text, TextInput, TouchableOpacity, Dimensions, Image } from 'react-native';
 import SignInStyles from './styles';
-import {useNavigation} from '@react-navigation/native';
-import {useDispatch, useSelector} from 'react-redux';
-import KeyBoardStatus from '../../CustomHooks/KeyBoardStatus/KeyBoardStatus';
-
-import {height, width, totalSize} from 'react-native-dimension';
-import EyeHiddenContent from '../../assets/eyeHiddenContent.svg';
-import EyeViewContent from '../../assets/eyeViewContent.svg';
-import colors from '../../Constants/Colors';
-import types from '../../Redux/types';
+import Imports from '../../Constants/Imports';
 
 const SignIn = () => {
-  const navigation = useNavigation();
-  const dispatch = useDispatch();
+  const navigation = Imports.Navigations.useNavigation();
+  const dispatch = Imports.Redux.useDispatch();
+  const loginKey = Imports.Redux.useSelector(state => state?.auth?.loginKey);
+
+  const [keyboardStatus] = Imports.KeyBoardStatus();
   const [avaiableHeight, setavaiableHeight] = useState(
     Dimensions.get('screen').height,
   );
@@ -33,24 +16,15 @@ const SignIn = () => {
   const [password, setPassword] = useState('');
   const [secureEntry, setSecureEntry] = useState(true);
   const [validationEmail, setValidationEmail] = useState('');
-
   const [validationPassword, setValidationPassword] = useState('');
-
-  const [keyboardStatus] = KeyBoardStatus();
-
   const [loading, setLoading] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
 
-  const loginKey = useSelector(state => state?.auth?.loginKey);
 
   const SignIn = () => {
-    // navigation.navigate('SignUp')
     let testKey = 'Umair';
-    dispatch({
-      type: types.LOGIN_KEY,
-      loginKey: testKey,
-    });
+    dispatch({ type: Imports.Types.LOGIN_KEY, loginKey: testKey });
   };
 
   return (
@@ -68,7 +42,7 @@ const SignIn = () => {
             justifyContent: 'center',
             height: avaiableHeight - avaiableHeight / 4,
           }}>
-          <View style={{justifyContent: 'center'}}>
+          <View style={{ justifyContent: 'center' }}>
             <Image
               source={require('../../assets/Ropstam_Logo.png')}
               style={SignInStyles.ImageView}
@@ -82,13 +56,13 @@ const SignIn = () => {
               SignInStyles.TextInputView,
               {
                 borderBottomColor: isFocusedEmail
-                  ? colors.darkBlue
-                  : colors.grey,
+                  ? Imports.Colors.darkBlue
+                  : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter email'}
-              placeholderTextColor={colors.grey}
+              placeholderTextColor={Imports.Colors.grey}
               value={email}
               onFocus={() => setIsFocusedEmail(true)}
               onBlur={() => setIsFocusedEmail(false)}
@@ -96,34 +70,34 @@ const SignIn = () => {
               style={SignInStyles.TextInputStyle}
             />
           </View>
-          <View style={{marginVertical: height(1)}} />
+          <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
           <View
             style={[
               SignInStyles.TextInputView,
               {
                 flexDirection: 'row',
                 borderBottomColor: isFocusedEmail
-                  ? colors.darkBlue
-                  : colors.grey,
+                  ? Imports.Colors.darkBlue
+                  : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter password'}
-              placeholderTextColor={colors.grey}
+              placeholderTextColor={Imports.Colors.grey}
               value={password}
               onFocus={() => setIsFocusedPassword(true)}
               onBlur={() => setIsFocusedPassword(false)}
               secureTextEntry={secureEntry}
               onChangeText={text => setPassword(text)}
-              style={[SignInStyles.TextInputStyle, {width: '90%'}]}
+              style={[SignInStyles.TextInputStyle, { width: '90%' }]}
             />
             <TouchableOpacity
               activeOpacity={0.8}
               onPress={() => setSecureEntry(!secureEntry)}>
               {secureEntry ? (
-                <EyeHiddenContent width={height(3.5)} height={height(3.5)} />
+                <Imports.EyeHiddenContent width={Imports.ScreenDimensions.height(3.5)} height={Imports.ScreenDimensions.height(3.5)} />
               ) : (
-                <EyeViewContent width={height(3.5)} height={height(3.5)} />
+                <Imports.EyeViewContent width={Imports.ScreenDimensions.height(3.5)} height={Imports.ScreenDimensions.height(3.5)} />
               )}
             </TouchableOpacity>
           </View>
@@ -138,7 +112,7 @@ const SignIn = () => {
               Don’t have an account?
             </Text>
             <TouchableOpacity
-              hitSlop={{bottom: 15, top: 15, left: 15, right: 15}}
+              hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
               onPress={() => {
                 navigation.navigate('SignUp');
               }}>

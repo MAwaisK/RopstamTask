@@ -1,7 +1,5 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {height, totalSize} from 'react-native-dimension';
-import colors from '../../Constants/Colors';
+import { StyleSheet } from 'react-native';
+import Imports from '../../Constants/Imports';
 
 const SignInStyles = StyleSheet.create({
   Main: {
@@ -22,39 +20,39 @@ const SignInStyles = StyleSheet.create({
     height: '38%',
   },
   HeaderText: {
-    fontSize: totalSize(2.6),
+    fontSize: Imports.ScreenDimensions.totalSize(2.6),
     color: '#231F20',
     fontWeight: 'bold',
   },
   TextInputView: {
-    height: height(5),
-    marginTop: height(2),
+    height: Imports.ScreenDimensions.height(5),
+    marginTop: Imports.ScreenDimensions.height(2),
     borderBottomWidth: 1,
-    borderColor: colors.grey,
+    borderColor: Imports.Colors.grey,
   },
   TextInputStyle: {
-    height: height(5),
-    fontSize: totalSize(1.7),
-    color: colors.black,
+    height: Imports.ScreenDimensions.height(5),
+    fontSize: Imports.ScreenDimensions.totalSize(1.7),
+    color: Imports.Colors.black,
   },
   BottomText: {
     color: '#075595',
-    fontSize: totalSize(1.4),
+    fontSize: Imports.ScreenDimensions.totalSize(1.4),
     fontWeight: '400',
     textDecorationLine: 'underline',
     marginLeft: 8,
   },
   SignInButtonStyle: {
     borderRadius: 40,
-    marginHorizontal: height(4),
-    height: height(5.5),
-    marginTop: height(8),
+    marginHorizontal: Imports.ScreenDimensions.height(4),
+    height: Imports.ScreenDimensions.height(5.5),
+    marginTop: Imports.ScreenDimensions.height(8),
     backgroundColor: 'rgba(4,34,70,1)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   SignInText: {
-    fontSize: totalSize(1.8),
+    fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(255,255,255,1)',
     fontWeight: '500',
   },
@@ -62,11 +60,11 @@ const SignInStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: height(3),
+    marginTop: Imports.ScreenDimensions.height(3),
   },
   donthaveAccnt: {
     color: 'rgba(87, 94, 98, 1)',
-    fontSize: totalSize(1.7),
+    fontSize: Imports.ScreenDimensions.totalSize(1.7),
   },
 });
 export default SignInStyles;

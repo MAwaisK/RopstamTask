@@ -1,7 +1,5 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
-import {height, totalSize} from 'react-native-dimension';
-import colors from '../../Constants/Colors';
+import { StyleSheet } from 'react-native';
+import Imports from '../../Constants/Imports';
 
 const SignUpStyles = StyleSheet.create({
   Main: {
@@ -15,7 +13,7 @@ const SignUpStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   HeaderText: {
-    fontSize: totalSize(2.6),
+    fontSize: Imports.ScreenDimensions.totalSize(2.6),
     color: '#231F20',
     fontWeight: 'bold',
   },
@@ -25,37 +23,37 @@ const SignUpStyles = StyleSheet.create({
   },
   BottomLabelText: {
     color: '#075595',
-    fontSize: totalSize(1.4),
+    fontSize: Imports.ScreenDimensions.totalSize(1.4),
     fontWeight: '400',
     textDecorationLine: 'underline',
     marginLeft: 8,
   },
   TextInputView: {
-    height: height(5),
-    marginTop: height(2),
+    height: Imports.ScreenDimensions.height(5),
+    marginTop: Imports.ScreenDimensions.height(2),
     borderBottomWidth: 1,
-    borderBottomColor: colors.grey,
+    borderBottomColor: Imports.Colors.grey,
   },
   TextInputStyle: {
-    height: height(5),
-    fontSize: totalSize(1.7),
-    color: colors.black,
+    height: Imports.ScreenDimensions.height(5),
+    fontSize: Imports.ScreenDimensions.totalSize(1.7),
+    color: Imports.Colors.black,
   },
   ForgetTextOuterView: {
     alignSelf: 'flex-end',
-    marginTop: height(1.2),
+    marginTop: Imports.ScreenDimensions.height(1.2),
     borderBottomColor: '#075595',
   },
   SignInButtonStyle: {
     borderRadius: 40,
-    height: height(4.5),
-    marginTop: height(5),
+    height: Imports.ScreenDimensions.height(4.5),
+    marginTop: Imports.ScreenDimensions.height(5),
     backgroundColor: '#075595',
     alignItems: 'center',
     justifyContent: 'center',
   },
   SignInText: {
-    fontSize: totalSize(1.6),
+    fontSize: Imports.ScreenDimensions.totalSize(1.6),
     color: '#FFFFFF',
     // fontFamily: 'Roboto-Regular',
   },
@@ -76,15 +74,15 @@ const SignUpStyles = StyleSheet.create({
   },
   SignInButtonStyle: {
     borderRadius: 40,
-    marginHorizontal: height(4),
-    height: height(5.5),
-    marginTop: height(8),
+    marginHorizontal: Imports.ScreenDimensions.height(4),
+    height: Imports.ScreenDimensions.height(5.5),
+    marginTop: Imports.ScreenDimensions.height(8),
     backgroundColor: 'rgba(4,34,70,1)',
     alignItems: 'center',
     justifyContent: 'center',
   },
   SignInText: {
-    fontSize: totalSize(1.8),
+    fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(255,255,255,1)',
     fontWeight: '500',
     //fontFamily: 'Roboto-Regular',
@@ -93,11 +91,11 @@ const SignUpStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'center',
-    marginTop: height(2),
+    marginTop: Imports.ScreenDimensions.height(2),
   },
   donthaveAccnt: {
     color: 'rgba(87, 94, 98, 1)',
-    fontSize: totalSize(1.7),
+    fontSize: Imports.ScreenDimensions.totalSize(1.7),
   },
 });
 export default SignUpStyles;

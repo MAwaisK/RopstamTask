@@ -1,20 +1,21 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Dashboard from '../../Screens/Dashboard/index';
-import CarDetails from '../../Screens/CarDetails';
-import MainDashboard from '../../Screens/MainDashboard';
+import Categories from '../../Screens/Categories';
+import Details from '../../Screens/Details';
+import Dashboard from '../../Screens/Dashboard';
+
 const Stack = createNativeStackNavigator();
 
 const AppStack = () => {
 
   return (
     <Stack.Navigator
-      initialRouteName="MainDashboard"
+      initialRouteName="Dashboard"
       headerMode="none"
       screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="MainDashboard" component={MainDashboard} />
       <Stack.Screen name="Dashboard" component={Dashboard} />
-      <Stack.Screen name="CarDetails" component={CarDetails} />
+      <Stack.Screen name="Categories" component={Categories} />
+      <Stack.Screen name="Details" component={Details} />
     </Stack.Navigator>
   );
 };
