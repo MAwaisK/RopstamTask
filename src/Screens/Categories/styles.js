@@ -18,7 +18,7 @@ const Styles = StyleSheet.create({
   HeaderContentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginHorizontal:Imports.ScreenDimensions.height(2),
+    marginHorizontal: Imports.ScreenDimensions.height(2),
     marginTop: Imports.ScreenDimensions.height(3),
   },
   SignoutText: {
@@ -37,7 +37,6 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: Imports.ScreenDimensions.height(1.4),
-
   },
   HeaderTextStyle: {
     color: Imports.Colors.white,
@@ -78,7 +77,7 @@ const Styles = StyleSheet.create({
   },
   CardRowContainer: {
     flexDirection: 'row',
-    flex:1,
+    flex: 1,
     //marginTop: Imports.ScreenDimensions.height(1.5),
     marginHorizontal: Imports.ScreenDimensions.height(1.2),
     marginVertical: Imports.ScreenDimensions.height(1.2),
@@ -114,19 +113,18 @@ const Styles = StyleSheet.create({
   },
   DropDownButtonTextStyle: {
     textAlign: 'left',
-    color: '#B1A9A9',
+    color: Imports.Colors.black,
     fontSize: Imports.ScreenDimensions.totalSize(1.4),
   },
-  EditContainer:{
+  EditContainer: {
     color: Imports.Colors.white,
-    height:'50%',
-    justifyContent:'flex-start',
-
+    height: '50%',
+    justifyContent: 'flex-start',
   },
-  DaleteContainer:{
+  DaleteContainer: {
     color: Imports.Colors.white,
-    height:'50%',
-    justifyContent:'flex-end',
+    height: '50%',
+    justifyContent: 'flex-end',
   },
   SignInButtonStyle: {
     borderRadius: 40,

@@ -1,14 +1,22 @@
-import React, { useState, useRef } from 'react';
-import { View, Text, SafeAreaView, FlatList, TouchableOpacity, Platform } from 'react-native';
+import React, {useState, useRef, useEffect} from 'react';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  FlatList,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import AddCarSheet from '../../Constants/AddCarSheet';
 
-
 const Categories = () => {
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
-  const selectedCategory = Imports.Redux.useSelector(state => state?.app?.selectedCategory);
+  const selectedCategory = Imports.Redux.useSelector(
+    state => state?.app?.selectedCategory,
+  );
   const carData = Imports.Redux.useSelector(state => state?.app?.carData);
   const makeList = Imports.Redux.useSelector(state => state?.app?.makeList);
   const [selectedType, setSelectedType] = useState('');
@@ -18,33 +26,20 @@ const Categories = () => {
   const AddCarSheetRef = useRef();
   const AddCarPassRef = () => AddCarSheetRef;
 
-  const categoryList = [
-    'BMW',
-    'Honda',
-    'Hyundai',
-    'Mazda',
-    'Mercedes',
-    'Suzukie',
-    'Tesla',
-    'Toyota',
-  ];
-
   const RenderCardView = (item, index) => {
+    console.log('item===>', item?.make_Name);
     return (
       <>
         {selectedCategory === item?.make_Name ? (
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-              navigation.navigate('Details', { item: item });
+              navigation.navigate('Details', {item: item});
             }}
             style={[
               Styles.CardContainer,
-              Platform.OS === 'ios'
-                ? Styles.Card
-                : Styles.Card2,
+              Platform.OS === 'ios' ? Styles.Card : Styles.Card2,
             ]}>
-
             <View style={Styles.CardRowContainer}>
               <View style={Styles.CardLabelView}>
                 <Text style={[Styles.CardLabelBlackText]}>
@@ -56,22 +51,61 @@ const Categories = () => {
               </View>
 
               <View style={Styles.CardLogoView}>
-                {item?.make_Name === 'BMW' ? <Imports.BMWLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                  : item?.make_Name === 'Honda' ? <Imports.HondaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                    : item?.make_Name === 'Hyundai' ? <Imports.HyundaiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                      : item?.make_Name === 'Mazda' ? <Imports.MazdaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                        : item?.make_Name === 'Mercedes' ? <Imports.MercedesLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                          : item?.make_Name === 'Suzukie' ? <Imports.SuzukiLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                            : item?.make_Name === 'Tesla' ? <Imports.TeslaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />
-                              : item?.make_Name === 'Toyota' && <Imports.ToyotaLogo width={Imports.ScreenDimensions.height(8)} height={Imports.ScreenDimensions.height(8)} />}
+                {item?.make_Name === 'BMW' ? (
+                  <Imports.BMWLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : item?.make_Name === 'Honda' ? (
+                  <Imports.HondaLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : item?.make_Name === 'Hyundai' ? (
+                  <Imports.HyundaiLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : item?.make_Name === 'Mazda' ? (
+                  <Imports.MazdaLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : item?.make_Name === 'Mercedes' ? (
+                  <Imports.MercedesLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : item?.make_Name === 'Suzukie' ? (
+                  <Imports.SuzukiLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : item?.make_Name === 'Tesla' ? (
+                  <Imports.TeslaLogo
+                    width={Imports.ScreenDimensions.height(8)}
+                    height={Imports.ScreenDimensions.height(8)}
+                  />
+                ) : (
+                  item?.make_Name === 'Toyota' && (
+                    <Imports.ToyotaLogo
+                      width={Imports.ScreenDimensions.height(8)}
+                      height={Imports.ScreenDimensions.height(8)}
+                    />
+                  )
+                )}
               </View>
-              <View style={{flex: 0.2, paddingRight: Imports.ScreenDimensions.height(2), justifyContent: 'center',alignItems:'flex-end'}}>
+              <View
+                style={{
+                  flex: 0.2,
+                  paddingRight: Imports.ScreenDimensions.height(2),
+                  justifyContent: 'center',
+                  alignItems: 'flex-end',
+                }}>
                 {/* {EditView()} */}
-                {DeleteView()}
+                {DeleteView(item)}
               </View>
-
             </View>
-
           </TouchableOpacity>
         ) : (
           <></>
@@ -82,35 +116,65 @@ const Categories = () => {
 
   const EditView = () => {
     return (
-      <TouchableOpacity hitSlop={{top:15,bottom:15}} style={Styles.EditContainer}>
-        <Imports.EditIcon width={Imports.ScreenDimensions.height(3)} height={Imports.ScreenDimensions.height(3)} />
+      <TouchableOpacity
+        hitSlop={{top: 15, bottom: 15}}
+        style={Styles.EditContainer}>
+        <Imports.EditIcon
+          width={Imports.ScreenDimensions.height(3)}
+          height={Imports.ScreenDimensions.height(3)}
+        />
       </TouchableOpacity>
     );
-  }
-  const DeleteView = () => {
+  };
+
+  const DeleteView = item => {
     return (
-      <TouchableOpacity hitSlop={{top:15,bottom:15}} style={Styles.DaleteContainer}>
-        <Imports.DeleteIcon width={Imports.ScreenDimensions.height(3)} height={Imports.ScreenDimensions.height(3)}/>
+      <TouchableOpacity
+        hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+        onPress={() => DeleteCar(item)}
+        style={Styles.DaleteContainer}>
+        <Imports.DeleteIcon
+          width={Imports.ScreenDimensions.height(3)}
+          height={Imports.ScreenDimensions.height(3)}
+        />
       </TouchableOpacity>
     );
-  }
+  };
 
   const AddCar = () => {
     return (
       <TouchableOpacity
-        // onPress={() => {
-        //   AddCarPassRef().current.open();
-        // }}
+        onPress={() => {
+          AddCarPassRef().current.open();
+        }}
         style={[Styles.SignInButtonStyle]}>
         <Text style={[Styles.SignInText]}>Register a new car</Text>
       </TouchableOpacity>
     );
   };
+  const DeleteCar = item => {
+    console.log(item);
+    var tempArr = [];
+    for (var a = 0; a < carData?.length; a++) {
+      if (carData[a].registration_No !== item?.registration_No) {
+        tempArr.push(carData[a]);
+      }
+    }
+    dispatch({
+      type: Imports.Types.CAR_DATA,
+      carData: tempArr,
+    });
+  };
 
   const renderDropDown = () => {
     return (
       <Imports.SelectDropdown
-        renderDropdownIcon={() => <Imports.ArrowDown height={Imports.ScreenDimensions.height(2)} width={Imports.ScreenDimensions.height(2)}/>}
+        renderDropdownIcon={() => (
+          <Imports.ArrowDown
+            height={Imports.ScreenDimensions.height(2)}
+            width={Imports.ScreenDimensions.height(2)}
+          />
+        )}
         dropdownStyle={{
           width: '90%',
         }}
@@ -134,13 +198,13 @@ const Categories = () => {
   };
 
   const Signout = () => {
-    dispatch({ type: Imports.Types.LOGIN_KEY, loginKey: '' })
+    dispatch({type: Imports.Types.LOGIN_KEY, loginKey: ''});
   };
 
   return (
     <>
       <SafeAreaView style={Styles.SafeArea} />
-      <SafeAreaView style={{ flex: 1, backgroundColor: Imports.Colors.white }}>
+      <SafeAreaView style={{flex: 1, backgroundColor: Imports.Colors.white}}>
         <View style={[Styles.Container]}>
           <View style={[Styles.Header]}>
             <>
@@ -153,14 +217,10 @@ const Categories = () => {
                 </TouchableOpacity>
               </View>
 
-              <View style={Styles.DropDownContainer}>
-                {renderDropDown()}
-              </View>
+              <View style={Styles.DropDownContainer}>{renderDropDown()}</View>
               <View style={Styles.HeaderTextView}>
                 <Text
-                  style={
-                    Styles.HeaderTextStyle
-                  }>{`${selectedCategory}`}</Text>
+                  style={Styles.HeaderTextStyle}>{`${selectedCategory}`}</Text>
               </View>
             </>
           </View>
@@ -168,9 +228,9 @@ const Categories = () => {
           <View style={Styles.ScrollViewContainer}>
             <FlatList
               data={carData}
-              renderItem={({ item, index }) => RenderCardView(item, index)}
-              style={{ flex: 1 }}
-              keyExtractor={(item, index) => item + index}
+              renderItem={({item, index}) => RenderCardView(item, index)}
+              style={{flex: 1}}
+              keyExtractor={(item, index) => index}
             />
           </View>
           {AddCar()}

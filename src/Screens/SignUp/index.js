@@ -1,21 +1,73 @@
-import React, { useState } from 'react';
-import { ScrollView, View, Text, TextInput, TouchableOpacity, Dimensions, Image } from 'react-native';
+import React, {useState} from 'react';
+import {
+  ScrollView,
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Dimensions,
+  Image,
+} from 'react-native';
 import SignUpStyles from './styles';
 import Imports from '../../Constants/Imports';
 
 const SignUp = () => {
   const dispatch = Imports.Redux.useDispatch();
   const navigation = Imports.Navigations.useNavigation();
+  const user = Imports.Redux.useSelector(state => state?.app?.user);
   const [keyboardStatus] = Imports.KeyBoardStatus();
-  const [avaiableHeight, setavaiableHeight] = useState(Dimensions.get('screen').height);
+  const [avaiableHeight, setavaiableHeight] = useState(
+    Dimensions.get('screen').height,
+  );
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isFocusedName, setIsFocusedName] = useState(false);
   const [isFocusedEmail, setIsFocusedEmail] = useState(false);
   const [isFocusedPassword, setIsFocusedPassword] = useState(false);
+  const [isMissingValue, setIsMissingValue] = useState('');
 
-  const SignUp = () => { };
+  const SignUp = () => {
+    if (name === '') {
+      setIsMissingValue('name');
+    } else if (email === '') {
+      setIsMissingValue('email');
+    } else if (password === '') {
+      setIsMissingValue('password');
+    } else if (password?.length < 5) {
+      setIsMissingValue('ShortPassword');
+    } else {
+      if (user?.length === 0) {
+        var userData = [
+          {
+            name: name,
+            email: email,
+            password: password,
+          },
+        ];
+        dispatch({type: Imports.Types.USER, user: userData});
+        dispatch({type: Imports.Types.LOGIN_KEY, loginKey: name});
+      } else {
+        var repeatEmail = 0;
+        for (a = 0; a < user?.length; a++) {
+          if (user[a].email === email) {
+            (repeatEmail = 1), setIsMissingValue('InvalidEmail');
+          }
+        }
+        if (repeatEmail === 0) {
+          var userData = {
+            name: name,
+            email: email,
+            password: password,
+          };
+          let userDataArr = user;
+          userDataArr.push(userData);
+          dispatch({type: Imports.Types.USER, user: userDataArr});
+          dispatch({type: Imports.Types.LOGIN_KEY, loginKey: name});
+        }
+      }
+    }
+  };
 
   return (
     <View style={[SignUpStyles.Main]}>
@@ -23,19 +75,19 @@ const SignUp = () => {
         style={[
           SignUpStyles.setAlignment,
           {
-            height: keyboardStatus == 'Keyboard Hidden' ? '50%' : '80%',
+            // height: keyboardStatus == 'Keyboard Hidden' ? '80%' : '80%',
           },
         ]}>
         <ScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             justifyContent: 'center',
-            height: avaiableHeight - avaiableHeight / 4,
+            height: avaiableHeight - avaiableHeight / 5.5,
           }}>
-          <View style={{ justifyContent: 'center' }}>
+          <View style={{justifyContent: 'center'}}>
             <Image
               //resizeMode='cover'
-              source={require('../../assets/Ropstam_Logo.png')}
+              source={Imports.LogoImage}
               style={SignUpStyles.ImageView}
             />
           </View>
@@ -46,63 +98,99 @@ const SignUp = () => {
             style={[
               SignUpStyles.TextInputView,
               {
-                borderBottomColor: isFocusedName
-                  ? Imports.Colors.darkBlue
-                  : Imports.Colors.grey,
+                borderBottomColor:
+                  isMissingValue === 'name'
+                    ? Imports.Colors.red
+                    : isFocusedName
+                    ? Imports.Colors.darkBlue
+                    : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter name'}
               placeholderTextColor={Imports.Colors.grey}
               value={name}
-              onFocus={() => setIsFocusedName(true)}
+              onFocus={() => {
+                setIsFocusedName(true);
+                setIsMissingValue('');
+              }}
               onBlur={() => setIsFocusedName(false)}
               onChangeText={text => setName(text)}
               style={SignUpStyles.TextInputStyle}
             />
           </View>
 
-          <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
+          <View style={{marginVertical: Imports.ScreenDimensions.height(1)}} />
 
           <View
             style={[
               SignUpStyles.TextInputView,
               {
-                borderBottomColor: isFocusedEmail
-                  ? Imports.Colors.darkBlue
-                  : Imports.Colors.grey,
+                borderBottomColor:
+                  isMissingValue === 'email'
+                    ? Imports.Colors.red
+                    : isFocusedEmail
+                    ? Imports.Colors.darkBlue
+                    : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter email'}
               placeholderTextColor={Imports.Colors.grey}
               value={email}
-              onFocus={() => setIsFocusedEmail(true)}
+              onFocus={() => {
+                setIsFocusedEmail(true);
+                setIsMissingValue('');
+              }}
               onBlur={() => setIsFocusedEmail(false)}
               onChangeText={text => setEmail(text)}
               style={SignUpStyles.TextInputStyle}
             />
           </View>
-          <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
+          {isMissingValue === 'InvalidEmail' && (
+            <Text
+              style={{
+                color: 'red',
+                marginTop: Imports.ScreenDimensions.height(0.6),
+              }}>
+              Please enter valid email
+            </Text>
+          )}
+          <View style={{marginVertical: Imports.ScreenDimensions.height(1)}} />
           <View
             style={[
               SignUpStyles.TextInputView,
               {
-                borderBottomColor: isFocusedPassword
-                  ? Imports.Colors.darkBlue
-                  : Imports.Colors.grey,
+                borderBottomColor:
+                  isMissingValue === 'password'
+                    ? Imports.Colors.red
+                    : isFocusedPassword
+                    ? Imports.Colors.darkBlue
+                    : Imports.Colors.grey,
               },
             ]}>
             <TextInput
               placeholder={'Enter password'}
               placeholderTextColor={Imports.Colors.grey}
               value={password}
-              onFocus={() => setIsFocusedPassword(true)}
+              onFocus={() => {
+                setIsFocusedPassword(true);
+                setIsMissingValue('');
+              }}
               onBlur={() => setIsFocusedPassword(false)}
               onChangeText={text => setPassword(text)}
               style={SignUpStyles.TextInputStyle}
             />
           </View>
+          {isMissingValue === 'ShortPassword' && (
+            <Text
+              style={{
+                color: 'red',
+                marginTop: Imports.ScreenDimensions.height(0.6),
+              }}>
+              Please enter more than 5 character
+            </Text>
+          )}
 
           <TouchableOpacity
             onPress={() => SignUp()}
@@ -115,11 +203,13 @@ const SignUp = () => {
               Already have an account?
             </Text>
             <TouchableOpacity
-              hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
+              hitSlop={{bottom: 15, top: 15, left: 15, right: 15}}
               onPress={() => {
                 navigation.navigate('SignIn');
               }}>
-              <Text style={[SignUpStyles.BottomLabelText]}>SignIn Instead</Text>
+              <Text style={[SignUpStyles.BottomLabelText]}>
+                Sign In Instead
+              </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
