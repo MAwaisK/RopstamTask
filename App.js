@@ -6,15 +6,15 @@ import { persistor, store } from './src/Redux/store';
 import MainNavigation from './src/Navigation/index';
 import colors from './src/Constants/Colors';
 import { NavigationContainer } from '@react-navigation/native';
-// import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     SplashScreen.hide();
-  //   }, 2000);
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 1000);
 
-  // }, []);
+  }, []);
 
 
   return (
