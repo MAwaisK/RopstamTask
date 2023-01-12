@@ -10,8 +10,11 @@ import {
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import AddCarSheet from '../../Constants/AddCarSheet';
+import { useIsFocused } from '@react-navigation/native';
 
 const Categories = () => {
+  const isFocused =useIsFocused();
+
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
   const selectedCategory = Imports.Redux.useSelector(
@@ -23,6 +26,11 @@ const Categories = () => {
 
   const AddCarSheetRef = useRef();
   const AddCarPassRef = () => AddCarSheetRef;
+
+  useEffect(() => {
+   
+  }, [isFocused])
+  
 
   const RenderCardView = (item, index) => {
     return (

@@ -82,6 +82,7 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
         owner_Name: ownerName,
         color: color,
       }];
+
       dispatch({
         type: Imports.Types.CAR_DETAILS,
         carDetails: newCarData[0],
@@ -89,6 +90,7 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
 
       console.log("newCarData=>",newCarData[0]);
       let carDataArr = [];
+
       for(a=0;a<carData.length;a++)
       {
         if(carData[a].registration_No===Number(registrationNo))
@@ -99,11 +101,12 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
           carDataArr.push(carData[a])
         }
       }
-      carDataArr.push(newCarData);
+
       dispatch({
         type: Imports.Types.CAR_DATA,
         carData: carDataArr,
       });
+      
       props.EditCarPassRef().current.close();
     }
   };

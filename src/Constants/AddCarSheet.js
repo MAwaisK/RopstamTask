@@ -39,7 +39,7 @@ const AddCar = props => {
   const [isFocusCarName, setIsFocusCarName] = useState('');
   const [isMissingValue, setIsMissingValue] = useState('');
 
-  console.log('Data', carData[carData?.length - 1].registration_No);
+  console.log('Data===>', carData);
 
   const RestAllValues = () => {
     setRegistrationNo('');
