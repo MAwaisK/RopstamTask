@@ -15,6 +15,7 @@ const Categories = () => {
 
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
+  const isFocused=Imports.Navigations.useIsFocused();
   const selectedCategory = Imports.Redux.useSelector(
     state => state?.app?.selectedCategory,
   );
@@ -46,7 +47,7 @@ const Categories = () => {
             <View style={Styles.CardRowContainer}>
               <View style={Styles.CardLabelView}>
                 <Text style={[Styles.CardLabelBlackText]}>
-                  {item?.modal_Number}
+                  {item?.car_Name}
                 </Text>
                 <Text style={[Styles.CardLabelGrayText]}>
                   Reg No: {item?.registration_No}
@@ -116,7 +117,6 @@ const Categories = () => {
       </>
     );
   };
-
 
   const DeleteView = item => {
     return (
@@ -193,7 +193,10 @@ const Categories = () => {
     dispatch({ type: Imports.Types.LOGIN_KEY, loginKey: '' });
   };
 
-  
+  useEffect(() => {
+    dispatch({ type: Imports.Types.CAR_DATA, carData: carData });
+  }, [check,selectedCategory])
+  console.log('Data',selectedCategory)
 
   return (
     <>
@@ -225,12 +228,11 @@ const Categories = () => {
               renderItem={({ item, index }) => RenderCardView(item, index)}
               style={{ flex: 1 }}
               keyExtractor={(item, index) => index}
-              extraData={carData}
             />
           </View>
           {AddCarButtonView()}
         </View>
-        <AddCarSheet AddCarPassRef={AddCarPassRef} setCheck={setCheck} />
+        <AddCarSheet AddCarPassRef={AddCarPassRef} setCheck={setCheck} check={check}/>
       </SafeAreaView>
     </>
   );

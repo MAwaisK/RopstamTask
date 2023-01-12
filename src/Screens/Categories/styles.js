@@ -88,7 +88,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
   },
   CardLabelBlackText: {
-    fontSize: Imports.ScreenDimensions.totalSize(2.3),
+    fontSize: Imports.ScreenDimensions.totalSize(2.2),
     color: Imports.Colors.black,
     fontWeight: 'bold',
   },

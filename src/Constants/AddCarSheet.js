@@ -47,6 +47,7 @@ const AddCar = props => {
     setMakeName('');
     setCarName('');
     setRegistrationNo(carData[carData?.length - 1].registration_No + 1);
+    props?.setCheck(!props?.check);
   };
 
   const ResetAllFocus = () => {
@@ -72,8 +73,6 @@ const AddCar = props => {
       setIsMissingValue('carName');
     } else {
       // props.AddCarPassRef().current.close();
-
-      props?.setCheck(false);
       const newCarData = {
         registration_No: Number(registrationNo),
         car_Name: carName,
@@ -89,7 +88,9 @@ const AddCar = props => {
         type: Imports.Types.CAR_DATA,
         carData: carDataArr,
       });
+      props?.setCheck(!props?.check);
       props.AddCarPassRef().current.close();
+      
     }
   };
 
@@ -151,6 +152,7 @@ const AddCar = props => {
       closeOnDragDown={false}
       closeOnPressMask={true}
       onOpen={() => RestAllValues()}
+      onClose={()=>props?.setCheck(!props?.check)}
       animationType="slide"
       customStyles={{
         wrapper: {
