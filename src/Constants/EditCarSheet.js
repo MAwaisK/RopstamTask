@@ -32,7 +32,6 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
   const [makeName, setMakeName] = useState('');
   const [carName, setCarName] = useState('');
 
-  const [isFocusRegistrationNo, setIsFocusRegistrationNo] = useState('');
   const [isFocusModalNumber, setIsFocusModalNumber] = useState('');
   const [isFocusOwnerName, setIsFocusOwnerName] = useState('');
   const [isFocusColor, setIsFocusColor] = useState('');
@@ -51,7 +50,6 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
   };
 
   const ResetAllFocus = () => {
-    setIsFocusRegistrationNo(false);
     setIsFocusModalNumber(false);
     setIsFocusOwnerName(false);
     setIsFocusColor(false);

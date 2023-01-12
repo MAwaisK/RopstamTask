@@ -52,7 +52,6 @@ const AddCar = props => {
   };
 
   const ResetAllFocus = () => {
-    setIsFocusRegistrationNo(false);
     setIsFocusModalNumber(false);
     setIsFocusOwnerName(false);
     setIsFocusColor(false);

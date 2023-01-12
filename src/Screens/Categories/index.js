@@ -26,10 +26,6 @@ const Categories = () => {
 
   const AddCarSheetRef = useRef();
   const AddCarPassRef = () => AddCarSheetRef;
-
-  useEffect(() => {
-   
-  }, [isFocused])
   
 
   const RenderCardView = (item, index) => {
@@ -149,6 +145,7 @@ const Categories = () => {
       </TouchableOpacity>
     );
   };
+
   const DeleteCar = item => {
     console.log(item);
     var tempArr = [];

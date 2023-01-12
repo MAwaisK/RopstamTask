@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -12,6 +12,7 @@ import Imports from '../../Constants/Imports';
 import Data from '../../Constants/Data';
 
 const Dashboard = () => {
+  const isFocused = Imports.Navigations.useIsFocused();
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
   const carData = Imports.Redux.useSelector(state => state?.app?.carData);
@@ -72,7 +73,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     GetCount();
-  }, []);
+  }, [isFocused]);
 
   const CategoryDetails = category => {
     dispatch({
