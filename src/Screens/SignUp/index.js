@@ -82,7 +82,7 @@ const SignUp = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             justifyContent: 'center',
-            height: avaiableHeight - avaiableHeight / 5.5,
+            height: avaiableHeight - avaiableHeight / 4,
           }}>
           <View style={{justifyContent: 'center'}}>
             <Image

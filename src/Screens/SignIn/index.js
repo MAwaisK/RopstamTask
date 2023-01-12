@@ -34,21 +34,29 @@ const SignIn = () => {
     } else {
       let statusEmail = 0;
       let statusPassword = 0;
+      if(user?.length===0)
+      {
+        statusEmail = -1;
+        statusPassword = -1;
+      }
       for (a = 0; a < user?.length; a++) {
         if (user[a].email !== email) {
-          statusEmail = statusEmail - 1;
-        }
-        if (user[a].email === email) {
-          statusEmail = statusEmail + 1000;
-        }
-        if (user[a].password !== password) {
-          statusPassword = statusPassword - 1;
+          statusEmail =  - 1;
         }
         if (user[a].email === email && user[a].password === password) {
           dispatch({type: Imports.Types.LOGIN_KEY, loginKey: user[a].name});
         }
       }
-      if (statusEmail < 0) {
+      for (a = 0; a < user?.length; a++) {
+        if (user[a].password !== password) {
+          statusPassword =  - 1;
+        }
+        if (user[a].email === email && user[a].password === password) {
+          dispatch({type: Imports.Types.LOGIN_KEY, loginKey: user[a].name});
+        }
+      }
+      console.log("statusEmail",statusEmail,statusPassword)
+      if (statusEmail === -1) {
         setIsMissingValue('IncorrectEmail');
       } else {
         if (statusPassword === -1) {
@@ -71,7 +79,7 @@ const SignIn = () => {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             justifyContent: 'center',
-            height: avaiableHeight - avaiableHeight / 5,
+            height: avaiableHeight - avaiableHeight / 4,
           }}>
           <View style={{justifyContent: 'center'}}>
             <Image source={Imports.LogoImage} style={SignInStyles.ImageView} />
