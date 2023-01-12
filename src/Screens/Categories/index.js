@@ -21,20 +21,21 @@ const Categories = () => {
   const makeList = Imports.Redux.useSelector(state => state?.app?.makeList);
   const [selectedType, setSelectedType] = useState('');
 
-  console.log('selectedCategory', selectedCategory);
-
   const AddCarSheetRef = useRef();
   const AddCarPassRef = () => AddCarSheetRef;
 
   const RenderCardView = (item, index) => {
-    console.log('item===>', item?.make_Name);
     return (
       <>
         {selectedCategory === item?.make_Name ? (
           <TouchableOpacity
             activeOpacity={0.8}
             onPress={() => {
-              navigation.navigate('Details', {item: item});
+              dispatch({
+                type: Imports.Types.CAR_DETAILS,
+                carDetails: item,
+              });
+              navigation.navigate('Details');
             }}
             style={[
               Styles.CardContainer,
@@ -114,18 +115,6 @@ const Categories = () => {
     );
   };
 
-  const EditView = () => {
-    return (
-      <TouchableOpacity
-        hitSlop={{top: 15, bottom: 15}}
-        style={Styles.EditContainer}>
-        <Imports.EditIcon
-          width={Imports.ScreenDimensions.height(3)}
-          height={Imports.ScreenDimensions.height(3)}
-        />
-      </TouchableOpacity>
-    );
-  };
 
   const DeleteView = item => {
     return (
@@ -141,7 +130,7 @@ const Categories = () => {
     );
   };
 
-  const AddCar = () => {
+  const AddCarButtonView = () => {
     return (
       <TouchableOpacity
         onPress={() => {
@@ -233,7 +222,7 @@ const Categories = () => {
               keyExtractor={(item, index) => index}
             />
           </View>
-          {AddCar()}
+          {AddCarButtonView()}
         </View>
         <AddCarSheet AddCarPassRef={AddCarPassRef} />
       </SafeAreaView>

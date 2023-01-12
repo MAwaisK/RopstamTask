@@ -11,27 +11,28 @@ import {
   Image,
 } from 'react-native';
 import Styles from './SheetStyles';
-import AddCarSheetWrapper from 'react-native-raw-bottom-sheet';
+import EditCarSheetWrapper from 'react-native-raw-bottom-sheet';
 // import CrossIcon from '../../../assets/images/CrossIcon.svg';
 // import DownArrow from '../../../assets/images/DownArrow.svg';
 import Imports from './Imports';
 
-const AddCar = props => {
+const EditCar = props => {
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
   const scrollViewRef = useRef(null);
-
   const makeList = Imports.Redux.useSelector(state => state?.app?.makeList);
   const colorList = Imports.Redux.useSelector(state => state?.app?.colorList);
   const carData = Imports.Redux.useSelector(state => state?.app?.carData);
+const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
 
-  const [registrationNo, setRegistrationNo] = useState(0);
+  const [registrationNo, setRegistrationNo] = useState(carDetails?.registration_No);
   const [modalNumber, setModalNumber] = useState('');
   const [ownerName, setOwnerName] = useState('');
   const [color, setColor] = useState('');
   const [makeName, setMakeName] = useState('');
   const [carName, setCarName] = useState('');
 
+  const [isFocusRegistrationNo, setIsFocusRegistrationNo] = useState('');
   const [isFocusModalNumber, setIsFocusModalNumber] = useState('');
   const [isFocusOwnerName, setIsFocusOwnerName] = useState('');
   const [isFocusColor, setIsFocusColor] = useState('');
@@ -39,16 +40,14 @@ const AddCar = props => {
   const [isFocusCarName, setIsFocusCarName] = useState('');
   const [isMissingValue, setIsMissingValue] = useState('');
 
-  console.log('Data', carData[carData?.length - 1].registration_No);
 
   const RestAllValues = () => {
-    setRegistrationNo('');
-    setModalNumber('');
-    setOwnerName('');
-    setColor('');
-    setMakeName('');
-    setCarName('');
-    setRegistrationNo(carData[carData?.length - 1].registration_No + 1);
+    setRegistrationNo(Number(carDetails?.registration_No));
+    setModalNumber(carDetails?.modal_Number);
+    setOwnerName(carDetails?.owner_Name);
+    setColor(carDetails?.color);
+    setMakeName(carDetails?.make_Name);
+    setCarName(carDetails?.car_Name);
   };
 
   const ResetAllFocus = () => {
@@ -60,7 +59,7 @@ const AddCar = props => {
     setIsFocusCarName(false);
   };
 
-  const AddCar = () => {
+  const EditCar = () => {
     if (modalNumber === '') {
       setIsMissingValue('modalNumber');
       scrollViewRef.current?.scrollTo({x: 1, animated: true});
@@ -74,23 +73,38 @@ const AddCar = props => {
     } else if (carName === '') {
       setIsMissingValue('carName');
     } else {
-      // props.AddCarPassRef().current.close();
-      const newCarData = {
+      // props.EditCarPassRef().current.close();
+      const newCarData = [{
         registration_No: Number(registrationNo),
         car_Name: carName,
         make_Name: makeName,
         modal_Number: modalNumber,
         owner_Name: ownerName,
         color: color,
-      };
-      console.log(newCarData);
-      let carDataArr = carData;
+      }];
+      dispatch({
+        type: Imports.Types.CAR_DETAILS,
+        carDetails: newCarData[0],
+      });
+
+      console.log("newCarData=>",newCarData[0]);
+      let carDataArr = [];
+      for(a=0;a<carData.length;a++)
+      {
+        if(carData[a].registration_No===Number(registrationNo))
+        {
+          carDataArr.push(newCarData[0])
+        }
+        else{
+          carDataArr.push(carData[a])
+        }
+      }
       carDataArr.push(newCarData);
       dispatch({
         type: Imports.Types.CAR_DATA,
         carData: carDataArr,
       });
-      props.AddCarPassRef().current.close();
+      props.EditCarPassRef().current.close();
     }
   };
 
@@ -145,8 +159,8 @@ const AddCar = props => {
     );
   };
   return (
-    <AddCarSheetWrapper
-      ref={props.AddCarPassRef()}
+    <EditCarSheetWrapper
+      ref={props.EditCarPassRef()}
       closeOnDragDown={false}
       closeOnPressMask={true}
       onOpen={() => RestAllValues()}
@@ -178,11 +192,11 @@ const AddCar = props => {
             }}
           />
           <View style={[Styles.SetRowsiseProfileTextandCloseIcon]}>
-            <Text style={[Styles.ProfileText]}>Car Registration</Text>
+            <Text style={[Styles.ProfileText]}>Update Car details</Text>
             <TouchableOpacity
               hitSlop={{bottom: 15, top: 15, left: 15, right: 15}}
               onPress={() => {
-                props.AddCarPassRef().current.close();
+                props.EditCarPassRef().current.close();
               }}
               style={[Styles.CrossIconOuteraview]}>
               {/* <CrossIcon /> */}
@@ -195,7 +209,7 @@ const AddCar = props => {
             contentContainerStyle={{flexGrow: 1}}>
             <Text style={[Styles.LabelText]}>Registration number</Text>
             <View style={[Styles.RegNoView]}>
-              <Text style={{color: '#000'}}>{registrationNo}</Text>
+              <Text style={{color: '#000'}}>{carDetails?.registration_No}</Text>
             </View>
 
             <Text style={[Styles.LabelText]}>Modal number *</Text>
@@ -288,17 +302,17 @@ const AddCar = props => {
               }}>
               <TouchableOpacity
                 onPress={() => {
-                  //props.AddCarPassRef().current.close();
-                  AddCar();
+                  //props.EditCarPassRef().current.close();
+                  EditCar();
                 }}
                 style={[Styles.SignInButtonStyle]}>
-                <Text style={[Styles.SignInText]}>Add car</Text>
+                <Text style={[Styles.SignInText]}>Update</Text>
               </TouchableOpacity>
             </TouchableOpacity>
           </ScrollView>
         </View>
       </SafeAreaView>
-    </AddCarSheetWrapper>
+    </EditCarSheetWrapper>
   );
 };
-export default AddCar;
+export default EditCar;

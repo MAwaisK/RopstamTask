@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   carData:[],
   colorList:[],
   makeList:[],
+  carDetails:[],
   selectedCategory: '',
 };
 
@@ -41,6 +42,12 @@ export default (state = INITIAL_STATE, action) => {
         colorList: action.colorList,
       };
 
+      case types.CAR_DETAILS:
+      return {
+        ...state,
+        carDetails: action.carDetails,
+      };
+
     case types.SELECTED_CATEGORY:
       return {
         ...state,
@@ -53,6 +60,7 @@ export default (state = INITIAL_STATE, action) => {
         loginKey: '',
         user: [],
         carData:[],
+        carDetails:[],
         selectedCategory,
       };
 
