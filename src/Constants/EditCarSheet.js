@@ -86,7 +86,6 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
         carDetails: newCarData[0],
       });
 
-      console.log("newCarData=>",newCarData[0]);
       let carDataArr = [];
 
       for(a=0;a<carData.length;a++)

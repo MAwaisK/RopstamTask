@@ -12,7 +12,6 @@ const Details = (props) => {
   const EditCarSheetRef = useRef();
   const EditCarPassRef = () => EditCarSheetRef;
 
-  console.log("carDetails",carDetails)
 
   const EditCarButtonView = () => {
     return (

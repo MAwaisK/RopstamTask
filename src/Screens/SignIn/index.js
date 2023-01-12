@@ -46,7 +46,6 @@ const SignIn = () => {
         }
         else{
           userFlag=true;
-          console.log('hi')
         }
       }
       if(userFlag)

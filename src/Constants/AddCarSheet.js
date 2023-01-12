@@ -81,7 +81,6 @@ const AddCar = props => {
         owner_Name: ownerName,
         color: color,
       };
-      console.log(newCarData);
       let carDataArr = carData;
       carDataArr.push(newCarData);
       dispatch({

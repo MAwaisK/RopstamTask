@@ -145,7 +145,6 @@ const Categories = () => {
   };
 
   const DeleteCar = item => {
-    console.log(item);
     var tempArr = [];
     for (var a = 0; a < carData?.length; a++) {
       if (carData[a].registration_No !== item?.registration_No) {
@@ -196,7 +195,6 @@ const Categories = () => {
   useEffect(() => {
     dispatch({ type: Imports.Types.CAR_DATA, carData: carData });
   }, [check,selectedCategory])
-  console.log('Data',selectedCategory)
 
   return (
     <>
