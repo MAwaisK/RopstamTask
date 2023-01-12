@@ -7,9 +7,11 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  StatusBar,
 } from 'react-native';
 import SignInStyles from './styles';
 import Imports from '../../Constants/Imports';
+import { emailRegex } from '../../Constants/emailRegex';
 
 const SignIn = () => {
   const navigation = Imports.Navigations.useNavigation();
@@ -29,7 +31,11 @@ const SignIn = () => {
   const SignIn = () => {
     if (email === '') {
       setIsMissingValue('email');
-    } else if (password === '') {
+    } 
+    else if(!emailRegex.test(email)){
+      setIsMissingValue('NotEmail');
+    }
+    else if (password === '') {
       setIsMissingValue('password');
     } else {
       let statusEmail = 0;
@@ -103,6 +109,7 @@ const SignIn = () => {
               placeholder={'Enter email'}
               placeholderTextColor={Imports.Colors.grey}
               value={email}
+              keyboardType={'email-address'}
               onFocus={() => {
                 setIsFocusedEmail(true);
                 setIsMissingValue('');
@@ -112,7 +119,7 @@ const SignIn = () => {
               style={SignInStyles.TextInputStyle}
             />
           </View>
-          {isMissingValue === 'IncorrectEmail' && (
+          {isMissingValue === 'IncorrectEmail'||isMissingValue === 'NotEmail' && (
             <Text
               style={{
                 color: 'red',

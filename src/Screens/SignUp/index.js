@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import SignUpStyles from './styles';
 import Imports from '../../Constants/Imports';
+import { emailRegex } from '../../Constants/emailRegex';
 
 const SignUp = () => {
   const dispatch = Imports.Redux.useDispatch();
@@ -32,7 +33,11 @@ const SignUp = () => {
       setIsMissingValue('name');
     } else if (email === '') {
       setIsMissingValue('email');
-    } else if (password === '') {
+    } 
+    else if (!emailRegex.test(email)) {
+      setIsMissingValue('NotEmail');
+    } 
+    else if (password === '') {
       setIsMissingValue('password');
     } else if (password?.length < 5) {
       setIsMissingValue('ShortPassword');
@@ -138,6 +143,7 @@ const SignUp = () => {
               placeholder={'Enter email'}
               placeholderTextColor={Imports.Colors.grey}
               value={email}
+              keyboardType={'email-address'}
               onFocus={() => {
                 setIsFocusedEmail(true);
                 setIsMissingValue('');
@@ -147,7 +153,7 @@ const SignUp = () => {
               style={SignUpStyles.TextInputStyle}
             />
           </View>
-          {isMissingValue === 'InvalidEmail' && (
+          {isMissingValue === 'InvalidEmail'||isMissingValue === 'NotEmail' && (
             <Text
               style={{
                 color: 'red',
@@ -156,6 +162,8 @@ const SignUp = () => {
               Please enter valid email
             </Text>
           )}
+
+          
           <View style={{marginVertical: Imports.ScreenDimensions.height(1)}} />
           <View
             style={[
