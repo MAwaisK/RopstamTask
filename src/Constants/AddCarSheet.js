@@ -39,8 +39,6 @@ const AddCar = props => {
   const [isFocusCarName, setIsFocusCarName] = useState('');
   const [isMissingValue, setIsMissingValue] = useState('');
 
-  console.log('Data===>', carData);
-
   const RestAllValues = () => {
     setRegistrationNo('');
     setModalNumber('');
@@ -74,6 +72,8 @@ const AddCar = props => {
       setIsMissingValue('carName');
     } else {
       // props.AddCarPassRef().current.close();
+
+      props?.setCheck(false);
       const newCarData = {
         registration_No: Number(registrationNo),
         car_Name: carName,
@@ -92,6 +92,8 @@ const AddCar = props => {
       props.AddCarPassRef().current.close();
     }
   };
+
+  
 
   const renderDropDownMake = () => {
     return (

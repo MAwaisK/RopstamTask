@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,8 @@ import {
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import AddCarSheet from '../../Constants/AddCarSheet';
-import { useIsFocused } from '@react-navigation/native';
 
 const Categories = () => {
-  const isFocused =useIsFocused();
 
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
@@ -22,11 +20,11 @@ const Categories = () => {
   );
   const carData = Imports.Redux.useSelector(state => state?.app?.carData);
   const makeList = Imports.Redux.useSelector(state => state?.app?.makeList);
-  const [selectedType, setSelectedType] = useState('');
+  const [check, setCheck] = useState(false);
 
   const AddCarSheetRef = useRef();
   const AddCarPassRef = () => AddCarSheetRef;
-  
+
 
   const RenderCardView = (item, index) => {
     return (
@@ -123,7 +121,7 @@ const Categories = () => {
   const DeleteView = item => {
     return (
       <TouchableOpacity
-        hitSlop={{top: 25, bottom: 25, left: 25, right: 25}}
+        hitSlop={{ top: 25, bottom: 25, left: 25, right: 25 }}
         onPress={() => DeleteCar(item)}
         style={Styles.DaleteContainer}>
         <Imports.DeleteIcon
@@ -192,13 +190,15 @@ const Categories = () => {
   };
 
   const Signout = () => {
-    dispatch({type: Imports.Types.LOGIN_KEY, loginKey: ''});
+    dispatch({ type: Imports.Types.LOGIN_KEY, loginKey: '' });
   };
+
+  
 
   return (
     <>
       <SafeAreaView style={Styles.SafeArea} />
-      <SafeAreaView style={{flex: 1, backgroundColor: Imports.Colors.white}}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: Imports.Colors.white }}>
         <View style={[Styles.Container]}>
           <View style={[Styles.Header]}>
             <>
@@ -222,14 +222,15 @@ const Categories = () => {
           <View style={Styles.ScrollViewContainer}>
             <FlatList
               data={carData}
-              renderItem={({item, index}) => RenderCardView(item, index)}
-              style={{flex: 1}}
+              renderItem={({ item, index }) => RenderCardView(item, index)}
+              style={{ flex: 1 }}
               keyExtractor={(item, index) => index}
+              extraData={carData}
             />
           </View>
           {AddCarButtonView()}
         </View>
-        <AddCarSheet AddCarPassRef={AddCarPassRef} />
+        <AddCarSheet AddCarPassRef={AddCarPassRef} setCheck={setCheck} />
       </SafeAreaView>
     </>
   );
