@@ -36,7 +36,7 @@ const SignUp = () => {
       setIsMissingValue('email');
     } 
     else if (!emailRegex.test(email)) {
-      setIsMissingValue('NotEmail');
+      setIsMissingValue('InvalidEmail');
     } 
     else if (password === '') {
       setIsMissingValue('password');
@@ -57,7 +57,8 @@ const SignUp = () => {
         var repeatEmail = 0;
         for (a = 0; a < user?.length; a++) {
           if (user[a].email === email) {
-            (repeatEmail = 1), setIsMissingValue('InvalidEmail');
+            repeatEmail = 1
+            alert('Email already exists')
           }
         }
         if (repeatEmail === 0) {
@@ -159,7 +160,7 @@ const SignUp = () => {
               style={SignUpStyles.TextInputStyle}
             />
           </View>
-          {isMissingValue === 'InvalidEmail'||isMissingValue === 'NotEmail' && (
+          {isMissingValue === 'InvalidEmail' && (
             <Text
               style={{
                 color: 'red',

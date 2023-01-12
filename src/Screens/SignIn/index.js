@@ -38,41 +38,24 @@ const SignIn = () => {
     else if (password === '') {
       setIsMissingValue('password');
     } else {
-      let statusEmail = 0;
-      let statusPassword = 0;
-      if(user?.length===0)
+      let userFlag = false;
+      for (a = 0; a < user?.length; a++) {
+        if (user[a].email === email && user[a].password === password) {
+          dispatch({type: Imports.Types.LOGIN_KEY, loginKey: user[a].name});
+          userFlag=false;
+        }
+        else{
+          userFlag=true;
+          console.log('hi')
+        }
+      }
+      if(userFlag)
       {
-        statusEmail = -1;
-        statusPassword = -1;
-      }
-      for (a = 0; a < user?.length; a++) {
-        if (user[a].email !== email) {
-          statusEmail =  - 1;
-        }
-        if (user[a].email === email && user[a].password === password) {
-          dispatch({type: Imports.Types.LOGIN_KEY, loginKey: user[a].name});
-        }
-      }
-      for (a = 0; a < user?.length; a++) {
-        if (user[a].password !== password) {
-          statusPassword =  - 1;
-        }
-        if (user[a].email === email && user[a].password === password) {
-          dispatch({type: Imports.Types.LOGIN_KEY, loginKey: user[a].name});
-        }
-      }
-      console.log("statusEmail",statusEmail,'statusPassword',statusPassword)
-      if (statusEmail === -1) {
-        setIsMissingValue('IncorrectEmail');
-      } else {
-        if (statusPassword === -1) {
-          setIsMissingValue('IncorrectPassword');
-        }
+        alert('Access Denied!')
       }
     }
   };
-
-
+ 
   return (
     <>
     <StatusBar
