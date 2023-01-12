@@ -61,7 +61,7 @@ const SignIn = () => {
           dispatch({type: Imports.Types.LOGIN_KEY, loginKey: user[a].name});
         }
       }
-      console.log("statusEmail",statusEmail,statusPassword)
+      console.log("statusEmail",statusEmail,'statusPassword',statusPassword)
       if (statusEmail === -1) {
         setIsMissingValue('IncorrectEmail');
       } else {
@@ -72,7 +72,13 @@ const SignIn = () => {
     }
   };
 
+
   return (
+    <>
+    <StatusBar
+    barStyle={'dark-content'}
+    backgroundColor={Imports.Colors.white}
+  />
     <View style={[SignInStyles.Main, {}]}>
       <View
         style={[
@@ -199,6 +205,7 @@ const SignIn = () => {
         </ScrollView>
       </View>
     </View>
+    </>
   );
 };
 export default SignIn;

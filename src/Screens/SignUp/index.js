@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  StatusBar,
 } from 'react-native';
 import SignUpStyles from './styles';
 import Imports from '../../Constants/Imports';
@@ -75,6 +76,11 @@ const SignUp = () => {
   };
 
   return (
+    <>
+    <StatusBar
+    barStyle={'dark-content'}
+    backgroundColor={Imports.Colors.white}
+  />
     <View style={[SignUpStyles.Main]}>
       <View
         style={[
@@ -223,6 +229,7 @@ const SignUp = () => {
         </ScrollView>
       </View>
     </View>
+    </>
   );
 };
 export default SignUp;
