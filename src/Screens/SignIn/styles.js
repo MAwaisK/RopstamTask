@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import Imports from '../../Constants/Imports';
 
-const SignInStyles = StyleSheet.create({
+const Styles = StyleSheet.create({
   Main: {
     flex: 1,
     backgroundColor: '#E5E5E5',
@@ -66,5 +66,9 @@ const SignInStyles = StyleSheet.create({
     color: 'rgba(87, 94, 98, 1)',
     fontSize: Imports.ScreenDimensions.totalSize(1.7),
   },
+  ErrorText: {
+    color: 'red',
+    marginTop: Imports.ScreenDimensions.height(0.6),
+  }
 });
-export default SignInStyles;
+export default Styles;

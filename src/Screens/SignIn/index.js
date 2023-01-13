@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, Dimensions, Image, StatusBar } from 'react-native';
-import SignInStyles from './styles';
+import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import { emailRegex } from '../../Constants/emailRegex';
 
@@ -29,7 +29,7 @@ const SignIn = () => {
       setIsMissingValue('password');
     } else {
       let userFlag = false;
-      for (a = 0; a < user?.length; a++) {
+      for (var a = 0; a < user?.length; a++) {
         if (user[a].email === email && user[a].password === password) {
           dispatch({ type: Imports.Types.LOGIN_KEY, loginKey: user[a].name });
           userFlag = false;
@@ -45,10 +45,10 @@ const SignIn = () => {
       <StatusBar
         barStyle={'dark-content'}
         backgroundColor={Imports.Colors.white} />
-      <View style={[SignInStyles.Main, {}]}>
+      <View style={[Styles.Main, {}]}>
         <View
           style={[
-            SignInStyles.setAlignment,
+            Styles.setAlignment,
             {
               height: keyboardStatus == 'Keyboard Hidden' ? '50%' : '80%',
             },
@@ -60,12 +60,12 @@ const SignIn = () => {
               height: avaiableHeight - avaiableHeight / 4,
             }}>
             <View style={{ justifyContent: 'center' }}>
-              <Image source={Imports.LogoImage} style={SignInStyles.ImageView} />
+              <Image source={Imports.LogoImage} style={Styles.ImageView} />
             </View>
-            <Text style={[SignInStyles.HeaderText]}>Find the ideal car for you!</Text>
+            <Text style={[Styles.HeaderText]}>Find the ideal car for you!</Text>
             <View
               style={[
-                SignInStyles.TextInputView,
+                Styles.TextInputView,
                 {
                   borderBottomColor:
                     isMissingValue === 'email'
@@ -86,19 +86,16 @@ const SignIn = () => {
                 }}
                 onBlur={() => setIsFocusedEmail(false)}
                 onChangeText={text => setEmail(text)}
-                style={SignInStyles.TextInputStyle} />
+                style={Styles.TextInputStyle} />
             </View>
             {isMissingValue === 'IncorrectEmail' || isMissingValue === 'NotEmail' && (
               <Text
-                style={{
-                  color: 'red',
-                  marginTop: Imports.ScreenDimensions.height(0.6),
-                }}>Please enter valid email</Text>
+                style={Styles.ErrorText}>Please enter valid email</Text>
             )}
             <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
             <View
               style={[
-                SignInStyles.TextInputView,
+                Styles.TextInputView,
                 {
                   flexDirection: 'row',
                   borderBottomColor:
@@ -120,7 +117,7 @@ const SignIn = () => {
                 onBlur={() => setIsFocusedPassword(false)}
                 secureTextEntry={secureEntry}
                 onChangeText={text => setPassword(text)}
-                style={[SignInStyles.TextInputStyle, { width: '90%' }]} />
+                style={[Styles.TextInputStyle, { width: '90%' }]} />
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={() => setSecureEntry(!secureEntry)}>
@@ -137,23 +134,20 @@ const SignIn = () => {
             </View>
             {isMissingValue === 'IncorrectPassword' && (
               <Text
-                style={{
-                  color: 'red',
-                  marginTop: Imports.ScreenDimensions.height(0.6),
-                }}>Please enter valid password</Text>
+              style={Styles.ErrorText}>Please enter valid password</Text>
             )}
             <TouchableOpacity
               onPress={() => SignIn()}
-              style={[SignInStyles.SignInButtonStyle]}>
-              <Text style={[SignInStyles.SignInText]}>Sign In</Text>
+              style={[Styles.SignInButtonStyle]}>
+              <Text style={[Styles.SignInText]}>Sign In</Text>
             </TouchableOpacity>
 
-            <View style={[SignInStyles.setRowWiseLastText]}>
-              <Text style={[SignInStyles.donthaveAccnt]}>Don’t have an account?</Text>
+            <View style={[Styles.setRowWiseLastText]}>
+              <Text style={[Styles.donthaveAccnt]}>Don’t have an account?</Text>
               <TouchableOpacity
                 hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
                 onPress={() => navigation.navigate('SignUp')}>
-                <Text style={[SignInStyles.BottomText]}>Sign up</Text>
+                <Text style={[Styles.BottomText]}>Sign up</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>

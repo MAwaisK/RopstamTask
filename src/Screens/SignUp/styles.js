@@ -1,7 +1,7 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Imports from '../../Constants/Imports';
 
-const SignUpStyles = StyleSheet.create({
+const Styles = StyleSheet.create({
   Main: {
     flex: 1,
     backgroundColor: '#E5E5E5',
@@ -75,7 +75,7 @@ const SignUpStyles = StyleSheet.create({
     borderRadius: 40,
     marginHorizontal: Imports.ScreenDimensions.height(4),
     height: Imports.ScreenDimensions.height(5.5),
-    marginTop: Imports.ScreenDimensions.height(8),
+    marginTop: Imports.ScreenDimensions.height(4),
     backgroundColor: 'rgba(4,34,70,1)',
     alignItems: 'center',
     justifyContent: 'center',
@@ -95,5 +95,9 @@ const SignUpStyles = StyleSheet.create({
     color: 'rgba(87, 94, 98, 1)',
     fontSize: Imports.ScreenDimensions.totalSize(1.7),
   },
+  ErrorText: {
+    color: 'red',
+    marginTop: Imports.ScreenDimensions.height(0.6),
+  }
 });
-export default SignUpStyles;
+export default Styles;

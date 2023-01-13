@@ -7,13 +7,36 @@ const Styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
   },
+  SheetContainer: {
+    height: Imports.ScreenDimensions.height(0.7),
+    borderRadius: 10,
+    backgroundColor: Imports.Colors.grey,
+    width: Imports.ScreenDimensions.height(4),
+    alignSelf: 'center',
+    marginTop: Imports.ScreenDimensions.height(1.2),
+  },
+  SheetCustomContainer:{
+    borderTopLeftRadius: 30,
+          borderTopRightRadius: 30,
+          backgroundColor: Imports.Colors.white,
+          flex: 2
+  },
   SetRowsiseProfileTextandCloseIcon: {
     flexDirection: 'row',
     marginBottom: Imports.ScreenDimensions.height(2.5),
     justifyContent: 'space-between',
     marginTop: Imports.ScreenDimensions.height(2),
   },
-  DropDownButtonStyle: {
+  ScrollViewContainer:{
+    flex:1,
+  },
+  ScrollViewContentContainer:{
+    flexGrow:1
+  },
+  FieldValueText:{
+    color:Imports.Colors.black,
+  },
+  DropDownButton: {
     width: '100%',
     height: Imports.ScreenDimensions.height(4.5),
     backgroundColor: '#FFF',
@@ -21,9 +44,15 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: Imports.Colors.grey,
   },
-  DropDownButtonTextStyle: {
+  DropDownButtonText: {
     textAlign: 'left',
     fontSize: Imports.ScreenDimensions.totalSize(1.4),
+  },
+  Dropdown:{
+    width: '90%',
+  },
+  DropdownText:{
+    fontSize: 12,
   },
   ProfileText: {
     color: '#0F0F0F',
@@ -57,13 +86,14 @@ const Styles = StyleSheet.create({
     color: '#5F6368',
     fontSize: Imports.ScreenDimensions.totalSize(1.5),
   },
-  issueDetailTextInput: {
+  TextInputStyle: {
     height: Imports.ScreenDimensions.height(5),
     textAlignVertical: 'top',
     paddingHorizontal: 12,
     borderWidth: 1,
     borderColor: Imports.Colors.grey,
     borderRadius: 7,
+    color:Imports.Colors.black,
   },
   RegNoView: {
     height: Imports.ScreenDimensions.height(5),
@@ -145,7 +175,7 @@ const Styles = StyleSheet.create({
     marginLeft: 6,
     marginTop: 2,
   },
-  SignInButtonStyle: {
+  ButtonViewStyle: {
     borderRadius: 40,
     marginHorizontal: Imports.ScreenDimensions.height(4),
     height: Imports.ScreenDimensions.height(5.5),
@@ -154,7 +184,7 @@ const Styles = StyleSheet.create({
     justifyContent: 'center',
     marginVertical: Imports.ScreenDimensions.height(2),
   },
-  SignInText: {
+  ButtonText: {
     fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(255,255,255,1)',
     fontWeight: '500',

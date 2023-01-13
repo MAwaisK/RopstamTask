@@ -87,11 +87,11 @@ const AddCar = props => {
           <Imports.ArrowDown
             height={Imports.ScreenDimensions.height(2)}
             width={Imports.ScreenDimensions.height(2)} />)}
-        dropdownStyle={{ width: '90%' }}
-        rowTextStyle={{ fontSize: 12 }}
+        dropdownStyle={Styles.Dropdown}
+        rowTextStyle={Styles.DropdownText}
         defaultButtonText={makeName ? makeName : `Select Category`}
-        buttonTextStyle={Styles.DropDownButtonTextStyle}
-        buttonStyle={Styles.DropDownButtonStyle}
+        buttonTextStyle={Styles.DropDownButtonText}
+        buttonStyle={Styles.DropDownButton}
         data={makeList}
         onSelect={(item, index) => { setMakeName(item) }} />
     );
@@ -109,8 +109,8 @@ const AddCar = props => {
         dropdownStyle={{ width: '90%' }}
         rowTextStyle={{ fontSize: 12 }}
         defaultButtonText={color ? color : `Select color`}
-        buttonTextStyle={Styles.DropDownButtonTextStyle}
-        buttonStyle={Styles.DropDownButtonStyle}
+        buttonTextStyle={Styles.DropDownButtonText}
+        buttonStyle={Styles.DropDownButton}
         data={colorList}
         onSelect={(item, index) => { setColor(item) }}
       />
@@ -126,25 +126,13 @@ const AddCar = props => {
       animationType="slide"
       customStyles={{
         wrapper: { backgroundColor: 'rgba(0,0,0,0.45)' },
-        container: {
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-          backgroundColor: '#FFFFFF',
-          flex: 2
-        },
+        container: Styles.SheetCustomContainer,
         draggableIcon: { backgroundColor: '#E4E5E5' }
       }}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={[Styles.mainContainer]}>
           <View
-            style={{
-              height: Imports.ScreenDimensions.height(0.7),
-              borderRadius: 10,
-              backgroundColor: Imports.Colors.grey,
-              width: Imports.ScreenDimensions.height(4),
-              alignSelf: 'center',
-              marginTop: Imports.ScreenDimensions.height(1.2),
-            }}
+            style={Styles.SheetContainer}
           />
           <View style={[Styles.SetRowsiseProfileTextandCloseIcon]}>
             <Text style={[Styles.ProfileText]}>Car Registration</Text>
@@ -159,17 +147,17 @@ const AddCar = props => {
           <ScrollView
             ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
-            style={{ flex: 1 }}
-            contentContainerStyle={{ flexGrow: 1 }}>
+            style={Styles.ScrollViewContainer}
+            contentContainerStyle={Styles.ScrollViewContentContainer}>
             <Text style={[Styles.LabelText]}>Registration number</Text>
             <View style={[Styles.RegNoView]}>
-              <Text style={{ color: '#000' }}>{registrationNo}</Text>
+              <Text style={Styles.FieldValueText}>{registrationNo}</Text>
             </View>
 
             <Text style={[Styles.LabelText]}>Modal number *</Text>
             <TextInput
               placeholder="Enter modal number"
-              placeholderTextColor="#5F6368"
+              placeholderTextColor={Imports.Colors.grey}
               value={modalNumber}
               onFocus={() => {
                 setIsFocusModalNumber(true);
@@ -180,9 +168,8 @@ const AddCar = props => {
                 setModalNumber(text);
               }}
               style={[
-                Styles.issueDetailTextInput,
+                Styles.TextInputStyle,
                 {
-                  color: '#000000',
                   borderColor:
                     isMissingValue === 'modalNumber'
                       ? Imports.Colors.red
@@ -196,7 +183,7 @@ const AddCar = props => {
             <Text style={[Styles.LabelText]}>Owner name *</Text>
             <TextInput
               placeholder="Enter owner name"
-              placeholderTextColor="#5F6368"
+              placeholderTextColor={Imports.Colors.grey}
               value={ownerName}
               onFocus={() => {
                 setIsFocusOwnerName(true);
@@ -207,9 +194,8 @@ const AddCar = props => {
                 setOwnerName(text);
               }}
               style={[
-                Styles.issueDetailTextInput,
+                Styles.TextInputStyle,
                 {
-                  color: '#000000',
                   borderColor:
                     isMissingValue === 'ownerName'
                       ? Imports.Colors.red
@@ -229,7 +215,7 @@ const AddCar = props => {
             <Text style={[Styles.LabelText]}>Car name</Text>
             <TextInput
               placeholder="Enter car name"
-              placeholderTextColor="#5F6368"
+              placeholderTextColor={Imports.Colors.grey}
               value={carName}
               onFocus={() => setIsFocusCarName(true)}
               onBlur={() => ResetAllFocus()}
@@ -237,9 +223,8 @@ const AddCar = props => {
                 setCarName(text);
               }}
               style={[
-                Styles.issueDetailTextInput,
+                Styles.TextInputStyle,
                 {
-                  color: '#000000',
                   borderColor:
                     isMissingValue === 'carName'
                       ? Imports.Colors.red
@@ -253,8 +238,8 @@ const AddCar = props => {
             <TouchableOpacity onPress={() => { Keyboard.dismiss() }}>
               <TouchableOpacity
                 onPress={() => { AddCar() }}
-                style={[Styles.SignInButtonStyle]}>
-                <Text style={[Styles.SignInText]}>Add car</Text>
+                style={[Styles.ButtonViewStyle]}>
+                <Text style={[Styles.ButtonText]}>Add car</Text>
               </TouchableOpacity>
             </TouchableOpacity>
           </ScrollView>

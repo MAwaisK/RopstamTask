@@ -75,7 +75,7 @@ const EditCar = props => {
 
       let carDataArr = [];
 
-      for (a = 0; a < carData.length; a++) {
+      for (var a = 0; a < carData.length; a++) {
         if (carData[a].registration_No === Number(registrationNo)) {
           carDataArr.push(newCarData[0])
         }
@@ -101,11 +101,11 @@ const EditCar = props => {
             height={Imports.ScreenDimensions.height(2)}
             width={Imports.ScreenDimensions.height(2)} />
         )}
-        dropdownStyle={{ width: '90%' }}
-        rowTextStyle={{ fontSize: 12 }}
+        dropdownStyle={Styles.Dropdown}
+        rowTextStyle={Styles.DropdownText}
         defaultButtonText={makeName ? makeName : `Select Category`}
-        buttonTextStyle={Styles.DropDownButtonTextStyle}
-        buttonStyle={Styles.DropDownButtonStyle}
+        buttonTextStyle={Styles.DropDownButtonText}
+        buttonStyle={Styles.DropDownButton}
         data={makeList}
         onSelect={(item, index) => { setMakeName(item) }} />
     );
@@ -119,11 +119,11 @@ const EditCar = props => {
             height={Imports.ScreenDimensions.height(2)}
             width={Imports.ScreenDimensions.height(2)} />
         )}
-        dropdownStyle={{ width: '90%' }}
-        rowTextStyle={{ fontSize: 12 }}
+        dropdownStyle={Styles.Dropdown}
+        rowTextStyle={Styles.DropdownText}
         defaultButtonText={color ? color : `Select color`}
-        buttonTextStyle={Styles.DropDownButtonTextStyle}
-        buttonStyle={Styles.DropDownButtonStyle}
+        buttonTextStyle={Styles.DropDownButtonText}
+        buttonStyle={Styles.DropDownButton}
         data={colorList}
         onSelect={(item, index) => { setColor(item) }} />
     );
@@ -138,25 +138,13 @@ const EditCar = props => {
       animationType="slide"
       customStyles={{
         wrapper: { backgroundColor: 'rgba(0,0,0,0.45)' },
-        container: {
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30,
-          backgroundColor: '#FFFFFF',
-          flex: 2,
-        },
+        container: Styles.SheetCustomContainer,
         draggableIcon: { backgroundColor: '#E4E5E5' }
       }}>
       <SafeAreaView style={{ flex: 1 }}>
         <View style={[Styles.mainContainer]}>
           <View
-            style={{
-              height: Imports.ScreenDimensions.height(0.7),
-              borderRadius: 10,
-              backgroundColor: Imports.Colors.grey,
-              width: Imports.ScreenDimensions.height(4),
-              alignSelf: 'center',
-              marginTop: Imports.ScreenDimensions.height(1.2),
-            }}
+            style={Styles.SheetContainer}
           />
           <View style={[Styles.SetRowsiseProfileTextandCloseIcon]}>
             <Text style={[Styles.ProfileText]}>Update Car details</Text>
@@ -171,17 +159,17 @@ const EditCar = props => {
           <ScrollView
             ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
-            style={{ flex: 1 }}
-            contentContainerStyle={{ flexGrow: 1 }}>
+            style={Styles.ScrollViewContainer}
+            contentContainerStyle={Styles.ScrollViewContentContainer}>
             <Text style={[Styles.LabelText]}>Registration number</Text>
             <View style={[Styles.RegNoView]}>
-              <Text style={{ color: '#000' }}>{carDetails?.registration_No}</Text>
+              <Text style={Styles.FieldValueText}>{carDetails?.registration_No}</Text>
             </View>
 
             <Text style={[Styles.LabelText]}>Modal number *</Text>
             <TextInput
               placeholder="Enter modal number"
-              placeholderTextColor="#5F6368"
+              placeholderTextColor={Imports.Colors.grey}
               value={modalNumber}
               onFocus={() => {
                 setIsFocusModalNumber(true);
@@ -192,9 +180,8 @@ const EditCar = props => {
                 setModalNumber(text);
               }}
               style={[
-                Styles.issueDetailTextInput,
+                Styles.TextInputStyle,
                 {
-                  color: '#000000',
                   borderColor:
                     isMissingValue === 'modalNumber'
                       ? Imports.Colors.red
@@ -208,7 +195,7 @@ const EditCar = props => {
             <Text style={[Styles.LabelText]}>Owner name *</Text>
             <TextInput
               placeholder="Enter owner name"
-              placeholderTextColor="#5F6368"
+              placeholderTextColor={Imports.Colors.grey}
               value={ownerName}
               onFocus={() => {
                 setIsFocusOwnerName(true);
@@ -219,9 +206,8 @@ const EditCar = props => {
                 setOwnerName(text);
               }}
               style={[
-                Styles.issueDetailTextInput,
+                Styles.TextInputStyle,
                 {
-                  color: '#000000',
                   borderColor:
                     isMissingValue === 'ownerName'
                       ? Imports.Colors.red
@@ -238,7 +224,7 @@ const EditCar = props => {
             <Text style={[Styles.LabelText]}>Car name</Text>
             <TextInput
               placeholder="Enter car name"
-              placeholderTextColor="#5F6368"
+              placeholderTextColor={Imports.Colors.grey}
               value={carName}
               onFocus={() => setIsFocusCarName(true)}
               onBlur={() => ResetAllFocus()}
@@ -246,9 +232,8 @@ const EditCar = props => {
                 setCarName(text);
               }}
               style={[
-                Styles.issueDetailTextInput,
+                Styles.TextInputStyle,
                 {
-                  color: '#000000',
                   borderColor:
                     isMissingValue === 'carName'
                       ? Imports.Colors.red
@@ -261,8 +246,8 @@ const EditCar = props => {
 
             <TouchableOpacity onPress={() => { Keyboard.dismiss() }}>
               <TouchableOpacity onPress={() => { EditCar() }}
-                style={[Styles.SignInButtonStyle]}>
-                <Text style={[Styles.SignInText]}>Update</Text>
+                style={[Styles.ButtonViewStyle]}>
+                <Text style={[Styles.ButtonText]}>Update</Text>
               </TouchableOpacity>
             </TouchableOpacity>
           </ScrollView>

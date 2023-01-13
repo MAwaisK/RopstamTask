@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView, View, Text, TextInput, TouchableOpacity, Dimensions, Image, StatusBar } from 'react-native';
-import SignUpStyles from './styles';
+import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import { emailRegex } from '../../Constants/emailRegex';
 
@@ -44,7 +44,7 @@ const SignUp = () => {
         dispatch({ type: Imports.Types.LOGIN_KEY, loginKey: name });
       } else {
         var repeatEmail = 0;
-        for (a = 0; a < user?.length; a++) {
+        for (var a = 0; a < user?.length; a++) {
           if (user[a].email === email) {
             repeatEmail = 1
             alert('Email already exists')
@@ -70,8 +70,8 @@ const SignUp = () => {
       <StatusBar
         barStyle={'dark-content'}
         backgroundColor={Imports.Colors.white} />
-      <View style={[SignUpStyles.Main]}>
-        <View style={[SignUpStyles.setAlignment]}>
+      <View style={[Styles.Main]}>
+        <View style={[Styles.setAlignment]}>
           <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{
@@ -81,11 +81,11 @@ const SignUp = () => {
             <View style={{ justifyContent: 'center' }}>
               <Image
                 source={Imports.LogoImage}
-                style={SignUpStyles.ImageView} />
+                style={Styles.ImageView} />
             </View>
-            <Text style={[SignUpStyles.HeaderText]}>Sign Up to find the ideal car for you!</Text>
+            <Text style={[Styles.HeaderText]}>Sign Up to find the ideal car for you!</Text>
             <View style={[
-              SignUpStyles.TextInputView,
+              Styles.TextInputView,
               {
                 borderBottomColor:
                   isMissingValue === 'name'
@@ -105,14 +105,14 @@ const SignUp = () => {
                 }}
                 onBlur={() => setIsFocusedName(false)}
                 onChangeText={text => setName(text)}
-                style={SignUpStyles.TextInputStyle} />
+                style={Styles.TextInputStyle} />
             </View>
 
             <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
 
             <View
               style={[
-                SignUpStyles.TextInputView,
+                Styles.TextInputView,
                 {
                   borderBottomColor:
                     isMissingValue === 'email'
@@ -133,18 +133,15 @@ const SignUp = () => {
                 }}
                 onBlur={() => setIsFocusedEmail(false)}
                 onChangeText={text => setEmail(text)}
-                style={SignUpStyles.TextInputStyle} />
+                style={Styles.TextInputStyle} />
             </View>
             {isMissingValue === 'InvalidEmail' && (
               <Text
-                style={{
-                  color: 'red',
-                  marginTop: Imports.ScreenDimensions.height(0.6),
-                }}>Please enter valid email</Text>)}
+                style={Styles.ErrorText}>Please enter valid email</Text>)}
             <View style={{ marginVertical: Imports.ScreenDimensions.height(1) }} />
             <View
               style={[
-                SignUpStyles.TextInputView,
+                Styles.TextInputView,
                 {
                   borderBottomColor:
                     isMissingValue === 'password'
@@ -164,25 +161,22 @@ const SignUp = () => {
                 }}
                 onBlur={() => setIsFocusedPassword(false)}
                 onChangeText={text => setPassword(text)}
-                style={SignUpStyles.TextInputStyle} />
+                style={Styles.TextInputStyle} />
             </View>
             {isMissingValue === 'ShortPassword' && (
-              <Text style={{
-                color: 'red',
-                marginTop: Imports.ScreenDimensions.height(0.6)
-              }}>Please enter more than 5 character</Text>)}
+              <Text style={Styles.ErrorText}>Please enter more than 5 character</Text>)}
 
             <TouchableOpacity
               onPress={() => SignUp()}
-              style={[SignUpStyles.SignInButtonStyle]}>
-              <Text style={[SignUpStyles.SignInText]}>Sign Up</Text>
+              style={[Styles.SignInButtonStyle]}>
+              <Text style={[Styles.SignInText]}>Sign Up</Text>
             </TouchableOpacity>
-            <View style={[SignUpStyles.setRowWiseLastText]}>
-              <Text style={[SignUpStyles.donthaveAccnt]}>Already have an account?</Text>
+            <View style={[Styles.setRowWiseLastText]}>
+              <Text style={[Styles.donthaveAccnt]}>Already have an account?</Text>
               <TouchableOpacity
                 hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
                 onPress={() => { navigation.navigate('SignIn') }}>
-                <Text style={[SignUpStyles.BottomLabelText]}>Sign In Instead</Text>
+                <Text style={[Styles.BottomLabelText]}>Sign In Instead</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
