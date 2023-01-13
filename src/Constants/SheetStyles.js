@@ -94,6 +94,7 @@ const Styles = StyleSheet.create({
     borderColor: Imports.Colors.grey,
     borderRadius: 7,
     color:Imports.Colors.black,
+    fontSize:Imports.ScreenDimensions.totalSize(1.4)
   },
   RegNoView: {
     height: Imports.ScreenDimensions.height(5),
