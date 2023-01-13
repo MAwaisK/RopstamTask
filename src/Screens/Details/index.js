@@ -1,4 +1,4 @@
-import React, { useState,useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, SafeAreaView, TouchableOpacity, Platform, ScrollView } from 'react-native';
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
@@ -16,9 +16,7 @@ const Details = (props) => {
   const EditCarButtonView = () => {
     return (
       <TouchableOpacity
-        onPress={() => {
-          EditCarPassRef().current.open();
-        }}
+        onPress={() => { EditCarPassRef().current.open() }}
         style={[Styles.SignInButtonStyle]}>
         <Text style={[Styles.SignInText]}>Update</Text>
       </TouchableOpacity>
@@ -108,9 +106,7 @@ const Details = (props) => {
                       <Text style={[Styles.ValueText]}>{carDetails?.color}</Text>
                     </View>
                   </View>
-                  
                 </View>
-                
               </ScrollView>
               {EditCarButtonView()}
             </View>

@@ -2,11 +2,7 @@ import * as Navigations from '@react-navigation/native';
 import * as Redux from 'react-redux';
 import * as ScreenDimensions from 'react-native-dimension';
 import SelectDropdown from 'react-native-select-dropdown';
-// import DatePicker from 'react-native-date-picker';
-
 import KeyBoardStatus from '../CustomHooks/KeyBoardStatus/KeyBoardStatus';
-//import AddCarSheet from '../Constants/AddCarSheet';
-
 import ArrowBack from '../assets/ArrowBack.svg';
 import ArrowDown from '../assets/ArrowDown.svg';
 import EyeHiddenContent from '../assets/eyeHiddenContent.svg';
@@ -32,9 +28,7 @@ export default {
     Redux,
     ScreenDimensions,
     SelectDropdown,
-    // DatePicker,
     KeyBoardStatus,
-    // AddCarSheet,
     ArrowBack,
     ArrowDown,
     EyeHiddenContent,

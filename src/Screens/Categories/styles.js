@@ -78,12 +78,10 @@ const Styles = StyleSheet.create({
   CardRowContainer: {
     flexDirection: 'row',
     flex: 1,
-    //marginTop: Imports.ScreenDimensions.height(1.5),
     marginHorizontal: Imports.ScreenDimensions.height(1.2),
     marginVertical: Imports.ScreenDimensions.height(1.2),
   },
   CardLabelView: {
-    // width: '50%',
     flex: 0.4,
     justifyContent: 'center',
   },
@@ -93,7 +91,6 @@ const Styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   CardLogoView: {
-    //width: '35%',
     flex: 0.4,
     justifyContent: 'center',
     alignItems: 'flex-end',

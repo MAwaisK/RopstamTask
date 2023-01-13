@@ -1,12 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  FlatList,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import { View, Text, SafeAreaView, FlatList, TouchableOpacity, Platform } from 'react-native';
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import AddCarSheet from '../../Constants/AddCarSheet';
@@ -15,7 +8,7 @@ const Categories = () => {
 
   const navigation = Imports.Navigations.useNavigation();
   const dispatch = Imports.Redux.useDispatch();
-  const isFocused=Imports.Navigations.useIsFocused();
+  const isFocused = Imports.Navigations.useIsFocused();
   const selectedCategory = Imports.Redux.useSelector(
     state => state?.app?.selectedCategory,
   );
@@ -163,18 +156,11 @@ const Categories = () => {
         renderDropdownIcon={() => (
           <Imports.ArrowDown
             height={Imports.ScreenDimensions.height(2)}
-            width={Imports.ScreenDimensions.height(2)}
-          />
+            width={Imports.ScreenDimensions.height(2)} />
         )}
-        dropdownStyle={{
-          width: '90%',
-        }}
-        rowTextStyle={{
-          fontSize: 12,
-        }}
-        defaultButtonText={
-          selectedCategory ? selectedCategory : `Select Category`
-        }
+        dropdownStyle={{ width: '90%' }}
+        rowTextStyle={{ fontSize: 12 }}
+        defaultButtonText={selectedCategory ? selectedCategory : `Select Category`}
         buttonTextStyle={Styles.DropDownButtonTextStyle}
         buttonStyle={Styles.DropDownButtonStyle}
         data={makeList}
@@ -194,7 +180,7 @@ const Categories = () => {
 
   useEffect(() => {
     dispatch({ type: Imports.Types.CAR_DATA, carData: carData });
-  }, [check,selectedCategory])
+  }, [check, selectedCategory])
 
   return (
     <>
@@ -211,11 +197,9 @@ const Categories = () => {
                   <Text style={Styles.SignoutText}>Sign out</Text>
                 </TouchableOpacity>
               </View>
-
               <View style={Styles.DropDownContainer}>{renderDropDown()}</View>
               <View style={Styles.HeaderTextView}>
-                <Text
-                  style={Styles.HeaderTextStyle}>{`${selectedCategory}`}</Text>
+                <Text style={Styles.HeaderTextStyle}>{`${selectedCategory}`}</Text>
               </View>
             </>
           </View>
@@ -225,12 +209,9 @@ const Categories = () => {
               data={carData}
               renderItem={({ item, index }) => RenderCardView(item, index)}
               style={{ flex: 1 }}
-              keyExtractor={(item, index) => index}
-            />
-          </View>
-          {AddCarButtonView()}
-        </View>
-        <AddCarSheet AddCarPassRef={AddCarPassRef} setCheck={setCheck} check={check}/>
+              keyExtractor={(item, index) => index} />
+          </View>{AddCarButtonView()}</View>
+        <AddCarSheet AddCarPassRef={AddCarPassRef} setCheck={setCheck} check={check} />
       </SafeAreaView>
     </>
   );

@@ -1,19 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Text,
-  SafeAreaView,
-  TextInput,
-  Keyboard,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import React, { useState, useEffect, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, Text, SafeAreaView, TextInput, Keyboard } from 'react-native';
 import Styles from './SheetStyles';
 import EditCarSheetWrapper from 'react-native-raw-bottom-sheet';
-// import CrossIcon from '../../../assets/images/CrossIcon.svg';
-// import DownArrow from '../../../assets/images/DownArrow.svg';
 import Imports from './Imports';
 
 const EditCar = props => {
@@ -23,7 +11,7 @@ const EditCar = props => {
   const makeList = Imports.Redux.useSelector(state => state?.app?.makeList);
   const colorList = Imports.Redux.useSelector(state => state?.app?.colorList);
   const carData = Imports.Redux.useSelector(state => state?.app?.carData);
-const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
+  const carDetails = Imports.Redux.useSelector(state => state?.app?.carDetails);
 
   const [registrationNo, setRegistrationNo] = useState(carDetails?.registration_No);
   const [modalNumber, setModalNumber] = useState('');
@@ -60,10 +48,10 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
   const EditCar = () => {
     if (modalNumber === '') {
       setIsMissingValue('modalNumber');
-      scrollViewRef.current?.scrollTo({x: 1, animated: true});
+      scrollViewRef.current?.scrollTo({ x: 1, animated: true });
     } else if (ownerName === '') {
       setIsMissingValue('ownerName');
-      scrollViewRef.current?.scrollTo({x: 1, animated: true});
+      scrollViewRef.current?.scrollTo({ x: 1, animated: true });
     } else if (makeName === '') {
       setIsMissingValue('makeName');
     } else if (color === '') {
@@ -71,7 +59,6 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
     } else if (carName === '') {
       setIsMissingValue('carName');
     } else {
-      // props.EditCarPassRef().current.close();
       const newCarData = [{
         registration_No: Number(registrationNo),
         car_Name: carName,
@@ -88,13 +75,11 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
 
       let carDataArr = [];
 
-      for(a=0;a<carData.length;a++)
-      {
-        if(carData[a].registration_No===Number(registrationNo))
-        {
+      for (a = 0; a < carData.length; a++) {
+        if (carData[a].registration_No === Number(registrationNo)) {
           carDataArr.push(newCarData[0])
         }
-        else{
+        else {
           carDataArr.push(carData[a])
         }
       }
@@ -103,7 +88,7 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
         type: Imports.Types.CAR_DATA,
         carData: carDataArr,
       });
-      
+
       props.EditCarPassRef().current.close();
     }
   };
@@ -114,50 +99,36 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
         renderDropdownIcon={() => (
           <Imports.ArrowDown
             height={Imports.ScreenDimensions.height(2)}
-            width={Imports.ScreenDimensions.height(2)}
-          />
+            width={Imports.ScreenDimensions.height(2)} />
         )}
-        dropdownStyle={{
-          width: '90%',
-        }}
-        rowTextStyle={{
-          fontSize: 12,
-        }}
+        dropdownStyle={{ width: '90%' }}
+        rowTextStyle={{ fontSize: 12 }}
         defaultButtonText={makeName ? makeName : `Select Category`}
         buttonTextStyle={Styles.DropDownButtonTextStyle}
         buttonStyle={Styles.DropDownButtonStyle}
         data={makeList}
-        onSelect={(item, index) => {
-          setMakeName(item);
-        }}
-      />
+        onSelect={(item, index) => { setMakeName(item) }} />
     );
   };
+
   const renderDropDownColor = () => {
     return (
       <Imports.SelectDropdown
         renderDropdownIcon={() => (
           <Imports.ArrowDown
             height={Imports.ScreenDimensions.height(2)}
-            width={Imports.ScreenDimensions.height(2)}
-          />
+            width={Imports.ScreenDimensions.height(2)} />
         )}
-        dropdownStyle={{
-          width: '90%',
-        }}
-        rowTextStyle={{
-          fontSize: 12,
-        }}
+        dropdownStyle={{ width: '90%' }}
+        rowTextStyle={{ fontSize: 12 }}
         defaultButtonText={color ? color : `Select color`}
         buttonTextStyle={Styles.DropDownButtonTextStyle}
         buttonStyle={Styles.DropDownButtonStyle}
         data={colorList}
-        onSelect={(item, index) => {
-          setColor(item);
-        }}
-      />
+        onSelect={(item, index) => { setColor(item) }} />
     );
   };
+
   return (
     <EditCarSheetWrapper
       ref={props.EditCarPassRef()}
@@ -166,20 +137,16 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
       onOpen={() => RestAllValues()}
       animationType="slide"
       customStyles={{
-        wrapper: {
-          backgroundColor: 'rgba(0,0,0,0.45)',
-        },
+        wrapper: { backgroundColor: 'rgba(0,0,0,0.45)' },
         container: {
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
           backgroundColor: '#FFFFFF',
           flex: 2,
         },
-        draggableIcon: {
-          backgroundColor: '#E4E5E5',
-        },
+        draggableIcon: { backgroundColor: '#E4E5E5' }
       }}>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={[Styles.mainContainer]}>
           <View
             style={{
@@ -194,22 +161,21 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
           <View style={[Styles.SetRowsiseProfileTextandCloseIcon]}>
             <Text style={[Styles.ProfileText]}>Update Car details</Text>
             <TouchableOpacity
-              hitSlop={{bottom: 15, top: 15, left: 15, right: 15}}
+              hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
               onPress={() => {
                 props.EditCarPassRef().current.close();
               }}
               style={[Styles.CrossIconOuteraview]}>
-              {/* <CrossIcon /> */}
             </TouchableOpacity>
           </View>
           <ScrollView
             ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
-            style={{flex: 1}}
-            contentContainerStyle={{flexGrow: 1}}>
+            style={{ flex: 1 }}
+            contentContainerStyle={{ flexGrow: 1 }}>
             <Text style={[Styles.LabelText]}>Registration number</Text>
             <View style={[Styles.RegNoView]}>
-              <Text style={{color: '#000'}}>{carDetails?.registration_No}</Text>
+              <Text style={{ color: '#000' }}>{carDetails?.registration_No}</Text>
             </View>
 
             <Text style={[Styles.LabelText]}>Modal number *</Text>
@@ -233,8 +199,8 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
                     isMissingValue === 'modalNumber'
                       ? Imports.Colors.red
                       : isFocusModalNumber
-                      ? Imports.Colors.darkBlue
-                      : Imports.Colors.grey,
+                        ? Imports.Colors.darkBlue
+                        : Imports.Colors.grey,
                 },
               ]}
             />
@@ -260,18 +226,15 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
                     isMissingValue === 'ownerName'
                       ? Imports.Colors.red
                       : isFocusOwnerName
-                      ? Imports.Colors.darkBlue
-                      : Imports.Colors.grey,
+                        ? Imports.Colors.darkBlue
+                        : Imports.Colors.grey,
                 },
               ]}
             />
-
             <Text style={[Styles.LabelText]}>Make name *</Text>
             {renderDropDownMake()}
-
             <Text style={[Styles.LabelText]}>Select color</Text>
             {renderDropDownColor()}
-
             <Text style={[Styles.LabelText]}>Car name</Text>
             <TextInput
               placeholder="Enter car name"
@@ -290,21 +253,14 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
                     isMissingValue === 'carName'
                       ? Imports.Colors.red
                       : isFocusCarName
-                      ? Imports.Colors.darkBlue
-                      : Imports.Colors.grey,
+                        ? Imports.Colors.darkBlue
+                        : Imports.Colors.grey,
                 },
               ]}
             />
 
-            <TouchableOpacity
-              onPress={() => {
-                Keyboard.dismiss();
-              }}>
-              <TouchableOpacity
-                onPress={() => {
-                  //props.EditCarPassRef().current.close();
-                  EditCar();
-                }}
+            <TouchableOpacity onPress={() => { Keyboard.dismiss() }}>
+              <TouchableOpacity onPress={() => { EditCar() }}
                 style={[Styles.SignInButtonStyle]}>
                 <Text style={[Styles.SignInText]}>Update</Text>
               </TouchableOpacity>
@@ -315,4 +271,5 @@ const carDetails=Imports.Redux.useSelector(state => state?.app?.carDetails);
     </EditCarSheetWrapper>
   );
 };
+
 export default EditCar;

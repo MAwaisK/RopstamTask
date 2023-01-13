@@ -55,7 +55,6 @@ const SignUpStyles = StyleSheet.create({
   SignInText: {
     fontSize: Imports.ScreenDimensions.totalSize(1.6),
     color: '#FFFFFF',
-    // fontFamily: 'Roboto-Regular',
   },
   Card: {
     shadowColor: '#bfafb2',
@@ -85,7 +84,6 @@ const SignUpStyles = StyleSheet.create({
     fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(255,255,255,1)',
     fontWeight: '500',
-    //fontFamily: 'Roboto-Regular',
   },
   setRowWiseLastText: {
     flexDirection: 'row',

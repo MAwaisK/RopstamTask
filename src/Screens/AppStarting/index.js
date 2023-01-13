@@ -1,12 +1,5 @@
-import React, {useEffect} from 'react';
-import {
-  ImageBackground,
-  TouchableOpacity,
-  Text,
-  View,
-  Image,
-  SafeAreaView,
-} from 'react-native';
+import React, { useEffect } from 'react';
+import { ImageBackground, TouchableOpacity, Text, View, Image, SafeAreaView, } from 'react-native';
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import CarData from '../../Constants/CarData';
@@ -45,8 +38,7 @@ const AppStarting = () => {
             <Image
               resizeMode="contain"
               source={Imports.LogoImage}
-              style={Styles.LogoStyle}
-            />
+              style={Styles.LogoStyle} />
           </View>
           <View style={Styles.FooterContentView}>
             <TouchableOpacity

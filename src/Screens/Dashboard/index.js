@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  View,
-  Text,
-  SafeAreaView,
-  TouchableOpacity,
-  Platform,
-  ScrollView,
-} from 'react-native';
+import { View, Text, SafeAreaView, TouchableOpacity, Platform, ScrollView } from 'react-native';
 import Styles from './styles';
 import Imports from '../../Constants/Imports';
 import Data from '../../Constants/Data';
@@ -113,9 +106,7 @@ const Dashboard = () => {
                       alignSelf: 'flex-end',
                       marginRight: Imports.ScreenDimensions.height(2.5),
                     },
-                  ]}>
-                  Total Cars: {carData.length}
-                </Text>
+                  ]}>Total Cars: {carData.length}</Text>
               </View>
             </>
           </View>
@@ -141,79 +132,55 @@ const Dashboard = () => {
                           {item?.Label === 'BMW' ? (
                             <Imports.BMWLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : item?.Label === 'Honda' ? (
                             <Imports.HondaLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : item?.Label === 'Hyundai' ? (
                             <Imports.HyundaiLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : item?.Label === 'Mazda' ? (
                             <Imports.MazdaLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : item?.Label === 'Mercedes' ? (
                             <Imports.MercedesLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : item?.Label === 'Suzukie' ? (
                             <Imports.SuzukiLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : item?.Label === 'Tesla' ? (
                             <Imports.TeslaLogo
                               width={Imports.ScreenDimensions.height(8)}
-                              height={Imports.ScreenDimensions.height(8)}
-                            />
+                              height={Imports.ScreenDimensions.height(8)} />
                           ) : (
                             item?.Label === 'Toyota' && (
                               <Imports.ToyotaLogo
                                 width={Imports.ScreenDimensions.height(8)}
-                                height={Imports.ScreenDimensions.height(8)}
-                              />
+                                height={Imports.ScreenDimensions.height(8)} />
                             )
                           )}
                           {item?.Label === 'BMW' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${bmwCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${bmwCount}`})</Text>
                           ) : item?.Label === 'Honda' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${hondaCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${hondaCount}`})</Text>
                           ) : item?.Label === 'Hyundai' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${hyundaiCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${hyundaiCount}`})</Text>
                           ) : item?.Label === 'Mazda' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${mazdaCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${mazdaCount}`})</Text>
                           ) : item?.Label === 'Mercedes' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${mercedesCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${mercedesCount}`})</Text>
                           ) : item?.Label === 'Suzukie' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${suzukieCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${suzukieCount}`})</Text>
                           ) : item?.Label === 'Tesla' ? (
-                            <Text style={Styles.CardLabelText}>
-                              ({`${teslaCount}`})
-                            </Text>
+                            <Text style={Styles.CardLabelText}>({`${teslaCount}`})</Text>
                           ) : (
                             item?.Label === 'Toyota' && (
-                              <Text style={Styles.CardLabelText}>
-                                ({`${toyotaCount}`})
-                              </Text>
+                              <Text style={Styles.CardLabelText}>({`${toyotaCount}`})</Text>
                             )
                           )}
                         </View>

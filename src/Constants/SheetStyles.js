@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Imports from './Imports';
 
 const Styles = StyleSheet.create({
@@ -16,7 +16,6 @@ const Styles = StyleSheet.create({
   DropDownButtonStyle: {
     width: '100%',
     height: Imports.ScreenDimensions.height(4.5),
-    //flexDirection: 'row-reverse',
     backgroundColor: '#FFF',
     borderRadius: 7,
     borderWidth: 1,
@@ -159,7 +158,6 @@ const Styles = StyleSheet.create({
     fontSize: Imports.ScreenDimensions.totalSize(1.8),
     color: 'rgba(255,255,255,1)',
     fontWeight: '500',
-    //fontFamily: 'Roboto-Regular',
   },
 });
 export default Styles;

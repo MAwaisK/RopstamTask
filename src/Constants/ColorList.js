@@ -1,4 +1,4 @@
-export default ColorList=[
+export default ColorList = [
     'White',
     'Black',
     'Blue',

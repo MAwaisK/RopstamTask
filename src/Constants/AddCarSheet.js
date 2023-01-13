@@ -1,19 +1,7 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  ScrollView,
-  TouchableOpacity,
-  Text,
-  SafeAreaView,
-  TextInput,
-  Keyboard,
-  ActivityIndicator,
-  Image,
-} from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, ScrollView, TouchableOpacity, Text, SafeAreaView, TextInput, Keyboard } from 'react-native';
 import Styles from './SheetStyles';
 import AddCarSheetWrapper from 'react-native-raw-bottom-sheet';
-// import CrossIcon from '../../../assets/images/CrossIcon.svg';
-// import DownArrow from '../../../assets/images/DownArrow.svg';
 import Imports from './Imports';
 
 const AddCar = props => {
@@ -61,10 +49,10 @@ const AddCar = props => {
   const AddCar = () => {
     if (modalNumber === '') {
       setIsMissingValue('modalNumber');
-      scrollViewRef.current?.scrollTo({x: 1, animated: true});
+      scrollViewRef.current?.scrollTo({ x: 1, animated: true });
     } else if (ownerName === '') {
       setIsMissingValue('ownerName');
-      scrollViewRef.current?.scrollTo({x: 1, animated: true});
+      scrollViewRef.current?.scrollTo({ x: 1, animated: true });
     } else if (makeName === '') {
       setIsMissingValue('makeName');
     } else if (color === '') {
@@ -72,7 +60,6 @@ const AddCar = props => {
     } else if (carName === '') {
       setIsMissingValue('carName');
     } else {
-      // props.AddCarPassRef().current.close();
       const newCarData = {
         registration_No: Number(registrationNo),
         car_Name: carName,
@@ -89,11 +76,9 @@ const AddCar = props => {
       });
       props?.setCheck(!props?.check);
       props.AddCarPassRef().current.close();
-      
+
     }
   };
-
-  
 
   const renderDropDownMake = () => {
     return (
@@ -101,25 +86,17 @@ const AddCar = props => {
         renderDropdownIcon={() => (
           <Imports.ArrowDown
             height={Imports.ScreenDimensions.height(2)}
-            width={Imports.ScreenDimensions.height(2)}
-          />
-        )}
-        dropdownStyle={{
-          width: '90%',
-        }}
-        rowTextStyle={{
-          fontSize: 12,
-        }}
+            width={Imports.ScreenDimensions.height(2)} />)}
+        dropdownStyle={{ width: '90%' }}
+        rowTextStyle={{ fontSize: 12 }}
         defaultButtonText={makeName ? makeName : `Select Category`}
         buttonTextStyle={Styles.DropDownButtonTextStyle}
         buttonStyle={Styles.DropDownButtonStyle}
         data={makeList}
-        onSelect={(item, index) => {
-          setMakeName(item);
-        }}
-      />
+        onSelect={(item, index) => { setMakeName(item) }} />
     );
   };
+
   const renderDropDownColor = () => {
     return (
       <Imports.SelectDropdown
@@ -129,19 +106,13 @@ const AddCar = props => {
             width={Imports.ScreenDimensions.height(2)}
           />
         )}
-        dropdownStyle={{
-          width: '90%',
-        }}
-        rowTextStyle={{
-          fontSize: 12,
-        }}
+        dropdownStyle={{ width: '90%' }}
+        rowTextStyle={{ fontSize: 12 }}
         defaultButtonText={color ? color : `Select color`}
         buttonTextStyle={Styles.DropDownButtonTextStyle}
         buttonStyle={Styles.DropDownButtonStyle}
         data={colorList}
-        onSelect={(item, index) => {
-          setColor(item);
-        }}
+        onSelect={(item, index) => { setColor(item) }}
       />
     );
   };
@@ -151,23 +122,19 @@ const AddCar = props => {
       closeOnDragDown={false}
       closeOnPressMask={true}
       onOpen={() => RestAllValues()}
-      onClose={()=>props?.setCheck(!props?.check)}
+      onClose={() => props?.setCheck(!props?.check)}
       animationType="slide"
       customStyles={{
-        wrapper: {
-          backgroundColor: 'rgba(0,0,0,0.45)',
-        },
+        wrapper: { backgroundColor: 'rgba(0,0,0,0.45)' },
         container: {
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
           backgroundColor: '#FFFFFF',
-          flex: 2,
+          flex: 2
         },
-        draggableIcon: {
-          backgroundColor: '#E4E5E5',
-        },
+        draggableIcon: { backgroundColor: '#E4E5E5' }
       }}>
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={{ flex: 1 }}>
         <View style={[Styles.mainContainer]}>
           <View
             style={{
@@ -182,22 +149,21 @@ const AddCar = props => {
           <View style={[Styles.SetRowsiseProfileTextandCloseIcon]}>
             <Text style={[Styles.ProfileText]}>Car Registration</Text>
             <TouchableOpacity
-              hitSlop={{bottom: 15, top: 15, left: 15, right: 15}}
+              hitSlop={{ bottom: 15, top: 15, left: 15, right: 15 }}
               onPress={() => {
                 props.AddCarPassRef().current.close();
               }}
               style={[Styles.CrossIconOuteraview]}>
-              {/* <CrossIcon /> */}
             </TouchableOpacity>
           </View>
           <ScrollView
             ref={scrollViewRef}
             showsVerticalScrollIndicator={false}
-            style={{flex: 1}}
-            contentContainerStyle={{flexGrow: 1}}>
+            style={{ flex: 1 }}
+            contentContainerStyle={{ flexGrow: 1 }}>
             <Text style={[Styles.LabelText]}>Registration number</Text>
             <View style={[Styles.RegNoView]}>
-              <Text style={{color: '#000'}}>{registrationNo}</Text>
+              <Text style={{ color: '#000' }}>{registrationNo}</Text>
             </View>
 
             <Text style={[Styles.LabelText]}>Modal number *</Text>
@@ -221,8 +187,8 @@ const AddCar = props => {
                     isMissingValue === 'modalNumber'
                       ? Imports.Colors.red
                       : isFocusModalNumber
-                      ? Imports.Colors.darkBlue
-                      : Imports.Colors.grey,
+                        ? Imports.Colors.darkBlue
+                        : Imports.Colors.grey,
                 },
               ]}
             />
@@ -248,8 +214,8 @@ const AddCar = props => {
                     isMissingValue === 'ownerName'
                       ? Imports.Colors.red
                       : isFocusOwnerName
-                      ? Imports.Colors.darkBlue
-                      : Imports.Colors.grey,
+                        ? Imports.Colors.darkBlue
+                        : Imports.Colors.grey,
                 },
               ]}
             />
@@ -278,21 +244,15 @@ const AddCar = props => {
                     isMissingValue === 'carName'
                       ? Imports.Colors.red
                       : isFocusCarName
-                      ? Imports.Colors.darkBlue
-                      : Imports.Colors.grey,
-                },
+                        ? Imports.Colors.darkBlue
+                        : Imports.Colors.grey,
+                }
               ]}
             />
 
-            <TouchableOpacity
-              onPress={() => {
-                Keyboard.dismiss();
-              }}>
+            <TouchableOpacity onPress={() => { Keyboard.dismiss() }}>
               <TouchableOpacity
-                onPress={() => {
-                  //props.AddCarPassRef().current.close();
-                  AddCar();
-                }}
+                onPress={() => { AddCar() }}
                 style={[Styles.SignInButtonStyle]}>
                 <Text style={[Styles.SignInText]}>Add car</Text>
               </TouchableOpacity>
